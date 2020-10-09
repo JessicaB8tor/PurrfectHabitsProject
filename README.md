@@ -1,11 +1,17 @@
-# My Personal Project
+# Tennis Match Journal
 
-## A subtitle
+## Overview
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+**Functionality:**
+This is a stat tracking app for tennis. Users are able to input the details of their
+tennis matches into the app and store these details so that they are able to retrieve
+them at a later date.
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+**Intended Audience:**
+Tennis players of all levels - beginner, intermediate, advanced - would benefit from
+using this app!
+
+**Background:**
+I chose to create this application as my personal project because of two reasons.
+Firstly, I wanted to make something that I would actually use in my own life.
+Secondly, I wanted to make something that was related to my passion - tennis! 
