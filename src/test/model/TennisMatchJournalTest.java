@@ -105,7 +105,7 @@ public class TennisMatchJournalTest {
     }
 
     @Test
-    void viewJournalOneMatch() {
+    void testViewJournalOneMatch() {
         testJournal.addMatch(testMatch);
 
         expected = "\n<DETAILS>\nOpponent: Rafa Nadal\nOutcome: WIN" +
@@ -118,7 +118,7 @@ public class TennisMatchJournalTest {
     }
 
     @Test
-    void viewJournalNoMatches() {
+    void testViewJournalNoMatches() {
         expected = "<YOUR JOURNAL IS EMPTY>";
         actual = testJournal.viewJournal();
 
@@ -126,7 +126,7 @@ public class TennisMatchJournalTest {
     }
 
     @Test
-    void viewJournalTwoMatches() {
+    void testViewJournalTwoMatches() {
         testJournal.addMatch(testMatch);
         testJournal.addMatch(testMatch1);
 
@@ -140,6 +140,32 @@ public class TennisMatchJournalTest {
         actual = testJournal.viewJournal();
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void testViewWinLossRatioNoMatches() {
+        assertEquals("0 : 0", testJournal.viewWinLossRatio());
+    }
+
+    @Test
+    void testViewWinLossRatioOneMatch() {
+        testJournal.addMatch(testMatch);
+
+        assertEquals("1 : 0", testJournal.viewWinLossRatio());
+
+        testJournal.deleteMatch(testMatch);
+        testJournal.addMatch(testMatch2);
+
+        assertEquals("0 : 1", testJournal.viewWinLossRatio());
+    }
+
+    @Test
+    void testViewWinLossRatioSomeMatches() {
+        testJournal.addMatch(testMatch);
+        testJournal.addMatch(testMatch1);
+        testJournal.addMatch(testMatch2);
+
+        assertEquals("2 : 1", testJournal.viewWinLossRatio());
     }
 
 }

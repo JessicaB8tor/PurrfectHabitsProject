@@ -5,7 +5,7 @@ import java.util.List;
 
 // Represents a journal containing tennis matches
 public class TennisMatchJournal {
-    private List<TennisMatch> journal;
+    private final List<TennisMatch> journal;
 
     // EFFECTS: Instantiates a TennisMatchJournal as an empty ArrayList
     public TennisMatchJournal() {
@@ -79,6 +79,22 @@ public class TennisMatchJournal {
                     .append("\n");
         }
         return result.toString();
+    }
+
+    // EFFECTS: returns the win loss ratio in the form "wins : losses";
+    public String viewWinLossRatio() {
+        int wins = 0;
+        int losses = 0;
+
+        for (TennisMatch match : journal) {
+            boolean isWon = match.getMatchDetails().getIsWon();
+            if (isWon) {
+                wins++;
+            } else {
+                losses++;
+            }
+        }
+        return wins + " : " + losses;
     }
 }
 
