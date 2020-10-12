@@ -21,4 +21,4 @@ Secondly, I wanted to make something that was related to my passion - tennis!
 1) As a user, I want to be able to create and add a tennis match to a list of tennis matches that I've played.
 2) As a user, I want to be able to view all the tennis matches that I've added into the program.
 3) As a user, I want to be able to know my current win:loss ratio.
-4) As a user, I want to be able to get feedback about a certain match from the program.
+4) As a user, I want to be able to delete a match from the list of matches that I've added into the program.

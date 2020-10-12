@@ -4,12 +4,12 @@ package model;
 public class TennisMatch {
     private MatchDetails matchDetails;
     private MatchStats matchStats;
-    private String notes;
+    // private String notes;
 
     public TennisMatch(MatchDetails md, MatchStats ms) {
         matchDetails = md;
         matchStats = ms;
-        notes = "";
+        // notes = "";
     }
 
     public MatchDetails getMatchDetails() {
@@ -18,6 +18,18 @@ public class TennisMatch {
 
     public MatchStats getMatchStats() {
         return matchStats;
+    }
+
+//    public String getNotes() {
+//        return notes;
+//    }
+
+    public void setMatchDetails(MatchDetails md) {
+        this.matchDetails = md;
+    }
+
+    public void setMatchStats(MatchStats ms) {
+        this.matchStats = ms;
     }
 
 
