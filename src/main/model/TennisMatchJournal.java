@@ -71,11 +71,11 @@ public class TennisMatchJournal {
             int unforcedErrors = match.getMatchStats().getUnforcedErrors();
 
             result.append("\n<DETAILS>")
-                    .append("\nOpponent: ").append(opponent).append("\nOutcome: ").append(isWon)
-                    .append("\nSurface: ").append(surface).append("\nDuration: ").append(duration)
-                    .append("\nDate: ").append(date).append("\n<STATS>").append("\nScore: ").append(score)
-                    .append("\nAces: ").append(aces).append("\nDouble Faults: ").append(doubleFaults)
-                    .append("\nWinners: ").append(winners).append("\nUnforced Errors: ").append(unforcedErrors)
+                    .append("\n\tOpponent: ").append(opponent).append("\n\tOutcome: ").append(isWon)
+                    .append("\n\tSurface: ").append(surface).append("\n\tDuration: ").append(duration)
+                    .append("\n\tDate: ").append(date).append("\n<STATS>").append("\n\tScore: ").append(score)
+                    .append("\n\tAces: ").append(aces).append("\n\tDouble Faults: ").append(doubleFaults)
+                    .append("\n\tWinners: ").append(winners).append("\n\tUnforced Errors: ").append(unforcedErrors)
                     .append("\n");
         }
         return result.toString();
@@ -95,6 +95,11 @@ public class TennisMatchJournal {
             }
         }
         return wins + " : " + losses;
+    }
+
+    // EFFECTS: gets the journal
+    public List<TennisMatch> getJournal() {
+        return journal;
     }
 }
 

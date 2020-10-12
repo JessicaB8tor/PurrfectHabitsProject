@@ -30,35 +30,34 @@ public class TennisMatchJournalTest {
         testMatch = new TennisMatch(testDetails, testStats);
         testMatch1 = new TennisMatch(testDetails1, testStats1);
         testMatch2 = new TennisMatch(testDetails2, testStats2);
-        testJournal = new TennisMatchJournal(); // empty journal
-
+        testJournal = new TennisMatchJournal();
     }
 
     @Test
     void testConstructor() {
-        assertEquals(0, testJournal.journalLength()); // check that journal is empty
+        assertEquals(0, testJournal.journalLength());
     }
 
     @Test
     void testAddMatchNotAlreadyThere() {
-        testJournal.addMatch(testMatch); //  adds the match into the journal
-        assertTrue(testJournal.containsMatch(testMatch)); // checks that match is now in the journal
+        testJournal.addMatch(testMatch);
+        assertTrue(testJournal.containsMatch(testMatch));
     }
 
     @Test
     void testAddMatchAlreadyThere() {
-        testJournal.addMatch(testMatch); //  adds the match into the journal
-        testJournal.addMatch(testMatch); // tries the same match
-        assertEquals(1, testJournal.journalLength()); // check that the length of the journal is still 1
+        testJournal.addMatch(testMatch);
+        testJournal.addMatch(testMatch);
+        assertEquals(1, testJournal.journalLength());
     }
 
     @Test
     void testAddMultipleMatches() {
-        testJournal.addMatch(testMatch); // add first unique match into journal
+        testJournal.addMatch(testMatch);
         assertEquals(1, testJournal.journalLength());
-        testJournal.addMatch(testMatch1); // add second unique match into journal
+        testJournal.addMatch(testMatch1);
         assertEquals(2, testJournal.journalLength());
-        testJournal.addMatch(testMatch2); // add third unique match into journal
+        testJournal.addMatch(testMatch2);
         assertEquals(3, testJournal.journalLength());
     }
 
@@ -108,10 +107,10 @@ public class TennisMatchJournalTest {
     void testViewJournalOneMatch() {
         testJournal.addMatch(testMatch);
 
-        expected = "\n<DETAILS>\nOpponent: Rafa Nadal\nOutcome: WIN" +
-                "\nSurface: CLAY\nDuration: 60 minutes\nDate: 10/11/2020\n<STATS>" +
-                "\nScore: 6-1 6-2" + "\nAces: 5\nDouble Faults: 1\nWinners: 10" +
-                "\nUnforced Errors: 8\n";
+        expected = "\n<DETAILS>\n\tOpponent: Rafa Nadal\n\tOutcome: WIN" +
+                "\n\tSurface: CLAY\n\tDuration: 60 minutes\n\tDate: 10/11/2020\n<STATS>" +
+                "\n\tScore: 6-1 6-2" + "\n\tAces: 5\n\tDouble Faults: 1\n\tWinners: 10" +
+                "\n\tUnforced Errors: 8\n";
         actual = testJournal.viewJournal();
 
         assertEquals(expected, actual);
@@ -130,12 +129,12 @@ public class TennisMatchJournalTest {
         testJournal.addMatch(testMatch);
         testJournal.addMatch(testMatch1);
 
-        expected = "\n<DETAILS>\nOpponent: Rafa Nadal\nOutcome: WIN" +
-                "\nSurface: CLAY\nDuration: 60 minutes\nDate: 10/11/2020\n<STATS>\nScore: 6-1 6-2" +
-                "\nAces: 5\nDouble Faults: 1\nWinners: 10\nUnforced Errors: 8\n" +
-                "\n<DETAILS>\nOpponent: Yang Lin\nOutcome: WIN" +
-                "\nSurface: HARD\nDuration: 30 minutes\nDate: 1/2/2020\n<STATS>\nScore: 7-5 6-4" +
-                "\nAces: 2\nDouble Faults: 0\nWinners: 13\nUnforced Errors: 9\n";
+        expected = "\n<DETAILS>\n\tOpponent: Rafa Nadal\n\tOutcome: WIN" +
+                "\n\tSurface: CLAY\n\tDuration: 60 minutes\n\tDate: 10/11/2020\n<STATS>\n\tScore: 6-1 6-2" +
+                "\n\tAces: 5\n\tDouble Faults: 1\n\tWinners: 10\n\tUnforced Errors: 8\n" +
+                "\n<DETAILS>\n\tOpponent: Yang Lin\n\tOutcome: WIN" +
+                "\n\tSurface: HARD\n\tDuration: 30 minutes\n\tDate: 1/2/2020\n<STATS>\n\tScore: 7-5 6-4" +
+                "\n\tAces: 2\n\tDouble Faults: 0\n\tWinners: 13\n\tUnforced Errors: 9\n";
 
         actual = testJournal.viewJournal();
 
@@ -167,7 +166,6 @@ public class TennisMatchJournalTest {
 
         assertEquals("2 : 1", testJournal.viewWinLossRatio());
     }
-
 }
 
 

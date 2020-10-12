@@ -1,5 +1,6 @@
 package model;
 
+// Represents common stats for a tennis match
 public class MatchStats {
     private String score;
     private int aces;

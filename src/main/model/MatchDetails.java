@@ -1,5 +1,6 @@
 package model;
 
+// Represents the details of a tennis match
 public class MatchDetails {
     private String opponent;
     private boolean isWon;
