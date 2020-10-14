@@ -3,17 +3,19 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TennisMatchJournalTest {
     private TennisMatchJournal testJournal;
-    private TennisMatch testMatch;
+    private TennisMatch testMatch0;
     private TennisMatch testMatch1;
     private TennisMatch testMatch2;
-    private MatchDetails testDetails;
+    private MatchDetails testDetails0;
     private MatchDetails testDetails1;
     private MatchDetails testDetails2;
-    private MatchStats testStats;
+    private MatchStats testStats0;
     private MatchStats testStats1;
     private MatchStats testStats2;
     private String expected;
@@ -21,13 +23,13 @@ public class TennisMatchJournalTest {
 
     @BeforeEach
     void runBefore() {
-        testDetails = new MatchDetails("Rafa Nadal", true, "clay", 60, "10/11/2020");
+        testDetails0 = new MatchDetails("Rafa Nadal", true, "clay", 60, "10/11/2020");
         testDetails1 = new MatchDetails("Yang Lin", true, "hard", 30, "1/2/2020");
         testDetails2 = new MatchDetails("Yang Lin", false, "hard", 30, "1/3/2020");
-        testStats = new MatchStats("6-1 6-2", 5, 1, 10, 8);
+        testStats0 = new MatchStats("6-1 6-2", 5, 1, 10, 8);
         testStats1 = new MatchStats("7-5 6-4", 2, 0, 13, 9);
         testStats2 = new MatchStats("3-6 1-6", 4, 7, 8, 10);
-        testMatch = new TennisMatch(testDetails, testStats);
+        testMatch0 = new TennisMatch(testDetails0, testStats0);
         testMatch1 = new TennisMatch(testDetails1, testStats1);
         testMatch2 = new TennisMatch(testDetails2, testStats2);
         testJournal = new TennisMatchJournal();
@@ -40,20 +42,20 @@ public class TennisMatchJournalTest {
 
     @Test
     void testAddMatchNotAlreadyThere() {
-        testJournal.addMatch(testMatch);
-        assertTrue(testJournal.containsMatch(testMatch));
+        testJournal.addMatch(testMatch0);
+        assertTrue(testJournal.containsMatch(testMatch0));
     }
 
     @Test
     void testAddMatchAlreadyThere() {
-        testJournal.addMatch(testMatch);
-        testJournal.addMatch(testMatch);
+        testJournal.addMatch(testMatch0);
+        testJournal.addMatch(testMatch0);
         assertEquals(1, testJournal.journalLength());
     }
 
     @Test
     void testAddMultipleMatches() {
-        testJournal.addMatch(testMatch);
+        testJournal.addMatch(testMatch0);
         assertEquals(1, testJournal.journalLength());
         testJournal.addMatch(testMatch1);
         assertEquals(2, testJournal.journalLength());
@@ -64,7 +66,7 @@ public class TennisMatchJournalTest {
     @Test
     void testJournalLength() {
         assertEquals(0, testJournal.journalLength());
-        testJournal.addMatch(testMatch);
+        testJournal.addMatch(testMatch0);
         assertEquals(1, testJournal.journalLength());
         testJournal.addMatch(testMatch1);
         assertEquals(2, testJournal.journalLength());
@@ -72,16 +74,16 @@ public class TennisMatchJournalTest {
 
     @Test
     void testDeleteExistingMatch() {
-        testJournal.addMatch(testMatch);
-        assertTrue(testJournal.containsMatch(testMatch));
+        testJournal.addMatch(testMatch0);
+        assertTrue(testJournal.containsMatch(testMatch0));
 
-        testJournal.deleteMatch(testMatch);
-        assertFalse(testJournal.containsMatch(testMatch));
+        testJournal.deleteMatch(testMatch0);
+        assertFalse(testJournal.containsMatch(testMatch0));
     }
 
     @Test
     void testDeleteNonExistingMatch() {
-        testJournal.addMatch(testMatch);
+        testJournal.addMatch(testMatch0);
         assertEquals(1, testJournal.journalLength());
 
         testJournal.deleteMatch(testMatch1);
@@ -90,14 +92,14 @@ public class TennisMatchJournalTest {
 
     @Test
     void testDeleteMultipleMatches() {
-        testJournal.addMatch(testMatch);
+        testJournal.addMatch(testMatch0);
         testJournal.addMatch(testMatch1);
         testJournal.addMatch(testMatch2);
         assertEquals(3, testJournal.journalLength());
 
         testJournal.deleteMatch(testMatch2);
         assertEquals(2, testJournal.journalLength());
-        testJournal.deleteMatch(testMatch);
+        testJournal.deleteMatch(testMatch0);
         assertEquals(1, testJournal.journalLength());
         testJournal.deleteMatch(testMatch1);
         assertEquals(0, testJournal.journalLength());
@@ -105,12 +107,12 @@ public class TennisMatchJournalTest {
 
     @Test
     void testViewJournalOneMatch() {
-        testJournal.addMatch(testMatch);
+        testJournal.addMatch(testMatch2);
 
-        expected = "\n<DETAILS>\n\tOpponent: Rafa Nadal\n\tOutcome: WIN" +
-                "\n\tSurface: CLAY\n\tDuration: 60 minutes\n\tDate: 10/11/2020\n<STATS>" +
-                "\n\tScore: 6-1 6-2" + "\n\tAces: 5\n\tDouble Faults: 1\n\tWinners: 10" +
-                "\n\tUnforced Errors: 8\n";
+        expected = "\n<DETAILS>\n\tOpponent: Yang Lin\n\tOutcome: LOSS" +
+                "\n\tSurface: HARD\n\tDuration: 30 minutes\n\tDate: 1/3/2020\n<STATS>" +
+                "\n\tScore: 3-6 1-6" + "\n\tAces: 4\n\tDouble Faults: 7\n\tWinners: 8" +
+                "\n\tUnforced Errors: 10\n";
         actual = testJournal.viewJournal();
 
         assertEquals(expected, actual);
@@ -126,7 +128,7 @@ public class TennisMatchJournalTest {
 
     @Test
     void testViewJournalTwoMatches() {
-        testJournal.addMatch(testMatch);
+        testJournal.addMatch(testMatch0);
         testJournal.addMatch(testMatch1);
 
         expected = "\n<DETAILS>\n\tOpponent: Rafa Nadal\n\tOutcome: WIN" +
@@ -148,11 +150,11 @@ public class TennisMatchJournalTest {
 
     @Test
     void testViewWinLossRatioOneMatch() {
-        testJournal.addMatch(testMatch);
+        testJournal.addMatch(testMatch0);
 
         assertEquals("1 : 0", testJournal.viewWinLossRatio());
 
-        testJournal.deleteMatch(testMatch);
+        testJournal.deleteMatch(testMatch0);
         testJournal.addMatch(testMatch2);
 
         assertEquals("0 : 1", testJournal.viewWinLossRatio());
@@ -160,11 +162,20 @@ public class TennisMatchJournalTest {
 
     @Test
     void testViewWinLossRatioSomeMatches() {
-        testJournal.addMatch(testMatch);
+        testJournal.addMatch(testMatch0);
         testJournal.addMatch(testMatch1);
         testJournal.addMatch(testMatch2);
 
         assertEquals("2 : 1", testJournal.viewWinLossRatio());
+    }
+
+    @Test
+    void testGetJournal() {
+        testJournal.addMatch(testMatch0);
+        assertEquals(1, testJournal.journalLength());
+
+        List<TennisMatch> journal = testJournal.getJournal();
+        assertEquals(1, journal.size());
     }
 }
 

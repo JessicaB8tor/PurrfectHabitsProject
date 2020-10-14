@@ -109,7 +109,7 @@ public class JournalApp {
     // EFFECTS: gets the stats of the match
     private MatchStats getUserStats() {
         System.out.println("<GETTING MATCH STATS>");
-        System.out.println("\nWhat was the score? - (a-b c-d)");
+        System.out.println("\nWhat was the score? - (a-b c-d ...)");
         String score = input.next() + input.nextLine();
         System.out.println("\nHow many aces did you hit?");
         int aces = input.nextInt();
@@ -151,7 +151,7 @@ public class JournalApp {
 
     // EFFECTS: processes the view command
     private void viewMatches() {
-        System.out.println("<VIEWING ALL MATCHES>\n");
+        System.out.println("<VIEWING ALL MATCHES>");
         String matches = journal.viewJournal();
         System.out.println(matches);
     }

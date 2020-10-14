@@ -9,7 +9,7 @@ them at a later date.
 
 **Intended Audience:**
 Tennis players of all levels - beginner, intermediate, advanced - would benefit from
-using this app!
+using this app.
 
 **Background:**
 I chose to create this application as my personal project because of two reasons.
