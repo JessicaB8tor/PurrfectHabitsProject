@@ -64,6 +64,15 @@ public class TennisMatchJournalTest {
     }
 
     @Test
+    void testContainsMatch() {
+        testJournal.addMatch(testMatch0);
+
+        assertTrue(testJournal.containsMatch(testMatch0));
+
+        assertFalse(testJournal.containsMatch(testMatch1));
+    }
+
+    @Test
     void testJournalLength() {
         assertEquals(0, testJournal.journalLength());
         testJournal.addMatch(testMatch0);
