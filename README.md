@@ -22,3 +22,5 @@ Secondly, I wanted to make something that was related to my passion - tennis!
 2) As a user, I want to be able to view all the tennis matches that I've added into the program.
 3) As a user, I want to be able to know my current win:loss ratio.
 4) As a user, I want to be able to delete a match from the list of matches that I've added into the program.
+5) As a user, I want to be able to save my journal to file.
+6) As a user, I want to be able to load my journal from file.
