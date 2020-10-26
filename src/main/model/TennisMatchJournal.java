@@ -1,10 +1,17 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a journal containing tennis matches
-public class TennisMatchJournal {
+// Note: The toJson() and matchesToJson() methods in this class are largely
+//       based on the methods with the same names found in the WorkRoom class
+//       of the WorkRoom application provided to us on GitHub.
+public class TennisMatchJournal implements Writable {
     private final List<TennisMatch> journal;
 
     // EFFECTS: Instantiates a TennisMatchJournal as an empty ArrayList
@@ -100,6 +107,25 @@ public class TennisMatchJournal {
     // EFFECTS: gets the journal
     public List<TennisMatch> getJournal() {
         return journal;
+    }
+
+    @Override
+    // EFFECTS: returns journal as a JSON object
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("matches", matchesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns matches in journal as a JSON array
+    private JSONArray matchesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (TennisMatch match : journal) {
+            jsonArray.put(match.toJson());
+        }
+
+        return jsonArray;
     }
 }
 

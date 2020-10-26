@@ -4,19 +4,26 @@ import model.MatchDetails;
 import model.MatchStats;
 import model.TennisMatch;
 import model.TennisMatchJournal;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Tennis match journal application
 // NOTE: The structure of this Class and many of the methods inside it including JournalApp,
-//       runJournal, initialize, displayMenu, and processCommand were largely based off of
+//       runJournal, initialize, displayMenu, and processCommand are largely based off of
 //       code in the TellerApp Class in the TellerApp application provided to us on GitHub.
 public class JournalApp {
+    private static final String JSON_STORE = "./data/journal.json";
     private TennisMatchJournal journal;
     private Scanner input;
+    private JsonReader jsonReader;
+    private JsonWriter jsonWriter;
 
     // EFFECTS: runs the journal application
-    public JournalApp() {
+    public JournalApp() throws FileNotFoundException {
         runJournal();
     }
 
@@ -47,6 +54,8 @@ public class JournalApp {
     private void initialize() {
         journal = new TennisMatchJournal();
         input = new Scanner(System.in);
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
     }
 
     // EFFECTS: displays menu of options to user
@@ -57,6 +66,8 @@ public class JournalApp {
         System.out.println("\tdelete --> delete an existing tennis match from your journal");
         System.out.println("\tview --> view all the tennis matches currently in your journal");
         System.out.println("\tratio --> view your current win : loss ratio");
+        System.out.println("\tload --> load journal from file");
+        System.out.println("\tsave --> save the current journal to file");
         System.out.println("\tquit --> close the application\n\n");
     }
 
@@ -71,6 +82,10 @@ public class JournalApp {
             viewMatches();
         } else if (command.equals("ratio")) {
             viewRatio();
+        } else if (command.equals("load")) {
+            loadJournal();
+        } else if (command.equals("save")) {
+            saveJournal();
         } else {
             System.out.println("<PLEASE ENTER IN A VALID COMMAND>");
         }
@@ -163,7 +178,28 @@ public class JournalApp {
         System.out.println(ratio);
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads journal from file
+    private void loadJournal() {
+        try {
+            journal = jsonReader.read();
+            System.out.println("<LOADED JOURNAL FROM FILE: " + JSON_STORE + ">");
+        } catch (IOException e) {
+            System.out.println("<UNABLE TO READ FROM FILE: " + JSON_STORE + ">");
+        }
+    }
 
+    // EFFECTS: saves current journal to file
+    private void saveJournal() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(journal);
+            jsonWriter.close();
+            System.out.println("<SAVED JOURNAL TO FILE: " + JSON_STORE + ">");
+        } catch (FileNotFoundException e) {
+            System.out.println("<UNABLE TO WRITE TO FILE: " + JSON_STORE + ">");
+        }
+    }
 }
 
 
