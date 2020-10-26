@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+// Represents a writer that writes JSON representation of journal to file
 // Note: The structure of this class and all of the methods inside it are
 //       largely based off the WorkRoom application provided to us on GitHub.
 public class JsonWriter {
