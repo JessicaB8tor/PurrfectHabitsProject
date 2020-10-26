@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 // Represents a reader that reads journal from JSON data stored in file
-// NOTE: The structure of this Class and all of the methods inside it are largely
+// Note: The structure of this Class and all of the methods inside it are largely
 //       based off the WorkRoom application that was given to us on GitHub.
 public class JsonReader {
     private String source;
