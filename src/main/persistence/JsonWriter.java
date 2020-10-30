@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 // Represents a writer that writes JSON representation of journal to file
 // Note: The structure of this class and all of the methods inside it are
 //       largely based off the WorkRoom application provided to us on GitHub.
+//       URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;

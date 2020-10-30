@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 // NOTE: The structure of this class and many of the methods in it are based off of
 //       the JsonReaderTest class in the WorkRoom application that was given to us
 //       on GitHub.
+//       URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class JsonReaderTest extends JsonTest {
     MatchDetails matchDetails1;
     MatchStats matchStats1;

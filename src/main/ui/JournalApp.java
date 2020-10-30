@@ -15,6 +15,7 @@ import java.util.Scanner;
 // NOTE: The structure of this Class and many of the methods inside it including JournalApp,
 //       runJournal, initialize, displayMenu, and processCommand are largely based off of
 //       code in the TellerApp Class in the TellerApp application provided to us on GitHub.
+//       URL: https://github.students.cs.ubc.ca/CPSC210/TellerApp
 public class JournalApp {
     private static final String JSON_STORE = "./data/journal.json";
     private TennisMatchJournal journal;

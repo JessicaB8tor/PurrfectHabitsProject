@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 // Represents a reader that reads journal from JSON data stored in file
 // Note: The structure of this Class and all of the methods inside it are largely
 //       based off the WorkRoom application that was given to us on GitHub.
+//       URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class JsonReader {
     private String source;
 

@@ -2,9 +2,11 @@ package ui;
 
 import java.io.FileNotFoundException;
 
-// Note: this class was based largely on the Main class
-//       found in the WorkRoom application provided to
-//       us on GitHub.
+// Note: this class was based largely on the Main classes
+//       found in both the WorkRoom application and the TellerApp
+//       application provided to us on GitHub.
+//       URLS: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+//             https://github.students.cs.ubc.ca/CPSC210/TellerApp
 public class Main {
     public static void main(String[] args) {
         try {
