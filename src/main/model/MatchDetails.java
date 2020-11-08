@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 // Represents the details of a tennis match
 public class MatchDetails {
     private String opponent;
@@ -37,5 +39,28 @@ public class MatchDetails {
         return date;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof MatchDetails)) {
+            return false;
+        }
+        MatchDetails that = (MatchDetails) o;
+        return isWon == that.isWon
+                &&
+                getDuration() == that.getDuration()
+                &&
+                Objects.equals(getOpponent(), that.getOpponent())
+                &&
+                Objects.equals(getSurface(), that.getSurface())
+                &&
+                Objects.equals(getDate(), that.getDate());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getOpponent(), isWon, getSurface(), getDuration(), getDate());
+    }
 }

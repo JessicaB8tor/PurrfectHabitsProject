@@ -100,9 +100,12 @@ public class JournalApp {
 
         TennisMatch tm = new TennisMatch(userDetails, userStats);
 
-        journal.addMatch(tm);
-
-        System.out.println("<THE MATCH HAS BEEN ADDED>");
+        if (!journal.containsMatch(tm)) {
+            journal.addMatch(tm);
+            System.out.println("<THE MATCH HAS BEEN ADDED>");
+        } else {
+            System.out.println("<THE JOURNAL ALREADY CONTAINS THIS MATCH>");
+        }
     }
 
     // EFFECTS: gets the details of the match

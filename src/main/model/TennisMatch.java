@@ -3,6 +3,8 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.util.Objects;
+
 // Represents the details and statistics of a tennis match
 // Note: The toJson() method in this class is largely based on the
 //       method with the same name found in the Thingy class in the
@@ -43,5 +45,24 @@ public class TennisMatch implements Writable {
         json.put("unforcedErrors", matchStats.getUnforcedErrors());
 
         return json;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof TennisMatch)) {
+            return false;
+        }
+        TennisMatch that = (TennisMatch) o;
+        return Objects.equals(getMatchDetails(), that.getMatchDetails())
+                &&
+                Objects.equals(getMatchStats(), that.getMatchStats());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMatchDetails(), getMatchStats());
     }
 }

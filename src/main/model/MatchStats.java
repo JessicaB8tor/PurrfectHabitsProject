@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 // Represents common stats for a tennis match
 public class MatchStats {
     private String score;
@@ -35,5 +37,30 @@ public class MatchStats {
 
     public int getUnforcedErrors() {
         return unforcedErrors;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof MatchStats)) {
+            return false;
+        }
+        MatchStats that = (MatchStats) o;
+        return getAces() == that.getAces()
+                &&
+                getDoubleFaults() == that.getDoubleFaults()
+                &&
+                getWinners() == that.getWinners()
+                &&
+                getUnforcedErrors() == that.getUnforcedErrors()
+                &&
+                Objects.equals(getScore(), that.getScore());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getScore(), getAces(), getDoubleFaults(), getWinners(), getUnforcedErrors());
     }
 }
