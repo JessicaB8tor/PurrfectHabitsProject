@@ -2,24 +2,25 @@ package ui.viewer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class LaunchPage extends JFrame {
-
     private JButton addButton;
-    private JButton viewButton;
     private JButton deleteButton;
+    private JButton viewButton;
     private JButton ratioButton;
     private JButton loadButton;
     private JButton saveButton;
     private JLabel mainGraphic;
 
-    public LaunchPage() {
-        initializeGraphic();
+    public LaunchPage(ActionListener listener) {
+        initializeGraphics();
         initializeButtons();
+        initializeListeners(listener);
         initializeFrame();
     }
 
-    private void initializeGraphic() {
+    private void initializeGraphics() {
         ImageIcon mainIcon = new ImageIcon("tennis-player.png");
         Image image = mainIcon.getImage();
         Image scaledImage = image.getScaledInstance(400, 400, Image.SCALE_SMOOTH);
@@ -54,6 +55,15 @@ public class LaunchPage extends JFrame {
         saveButton.setBounds(750, 590, 400, 50);
     }
 
+    private void initializeListeners(ActionListener listener) {
+        addButton.addActionListener(listener);
+        deleteButton.addActionListener(listener);
+        viewButton.addActionListener(listener);
+        ratioButton.addActionListener(listener);
+        loadButton.addActionListener(listener);
+        saveButton.addActionListener(listener);
+    }
+
     private void initializeFrame() {
         ImageIcon frameIcon = new ImageIcon("tennis_ball.png");
         this.add(addButton);
@@ -70,5 +80,29 @@ public class LaunchPage extends JFrame {
         this.setIconImage(frameIcon.getImage());
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+    }
+
+    public JButton getAddButton() {
+        return addButton;
+    }
+
+    public JButton getDeleteButton() {
+        return deleteButton;
+    }
+
+    public JButton getViewButton() {
+        return viewButton;
+    }
+
+    public JButton getRatioButton() {
+        return ratioButton;
+    }
+
+    public JButton getLoadButton() {
+        return loadButton;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton;
     }
 }

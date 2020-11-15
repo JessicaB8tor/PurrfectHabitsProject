@@ -1,7 +1,10 @@
 package ui;
 
 import ui.controller.JournalAppGui;
+import ui.viewer.AddPage;
+import ui.viewer.DeletePage;
 import ui.viewer.LaunchPage;
+import ui.viewer.RatioPage;
 
 // Note: this class was based largely on the Main classes
 //       found in both the WorkRoom application and the TellerApp
@@ -19,7 +22,8 @@ import ui.viewer.LaunchPage;
 //}
 public class Main {
     public static void main(String[] args) {
-        new LaunchPage();
+        //new JournalAppGui();
+        new AddPage();
     }
 }
 
