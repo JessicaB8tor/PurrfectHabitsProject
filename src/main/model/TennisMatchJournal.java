@@ -23,9 +23,7 @@ public class TennisMatchJournal implements Writable {
     // EFFECTS: adds the given tennis match into the journal; do nothing if it has already
     //          been added
     public void addMatch(TennisMatch match) {
-        if (!journal.contains(match)) {
-            journal.add(match);
-        }
+        journal.add(match);
     }
 
     // EFFECTS: return true if match is in the journal; otherwise, return false

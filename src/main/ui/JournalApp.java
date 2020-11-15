@@ -24,7 +24,7 @@ public class JournalApp {
     private JsonWriter jsonWriter;
 
     // EFFECTS: runs the journal application
-    public JournalApp() throws FileNotFoundException {
+    public JournalApp() {
         runJournal();
     }
 

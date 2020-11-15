@@ -2,6 +2,7 @@ package ui.viewer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class AddPage extends JFrame {
     JTextField opponentField;
@@ -29,11 +30,11 @@ public class AddPage extends JFrame {
     String[] results;
     String[] surfaces;
 
-    public AddPage() {
+    public AddPage(ActionListener listener) {
         initializeLabels();
         initializeFields();
         initializeComboBoxes();
-        initializeButtons();
+        initializeButtons(listener);
         configureAll();
         initializeFrame();
     }
@@ -48,13 +49,13 @@ public class AddPage extends JFrame {
         surfaceLabel = new JLabel("Surface:");
         surfaceLabel.setFont(new Font("Arial", Font.BOLD, 16));
 
-        durationLabel = new JLabel("Duration:");
+        durationLabel = new JLabel("Duration: (in minutes)");
         durationLabel.setFont(new Font("Arial", Font.BOLD, 16));
 
         dateLabel = new JLabel("Date: (D/M/YYYY)");
         dateLabel.setFont(new Font("Arial", Font.BOLD, 16));
 
-        scoreLabel = new JLabel("Score:");
+        scoreLabel = new JLabel("Score: (A-B C-D ...)");
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 16));
 
         acesLabel = new JLabel("Aces:");
@@ -68,7 +69,6 @@ public class AddPage extends JFrame {
 
         unforcedErrorsLabel = new JLabel("Unforced Errors:");
         unforcedErrorsLabel.setFont(new Font("Arial", Font.BOLD, 16));
-
     }
 
     private void initializeFields() {
@@ -83,19 +83,21 @@ public class AddPage extends JFrame {
     }
 
     private void initializeComboBoxes() {
-        results = new String[]{"Win", "Loss"};
+        results = new String[]{"Please select an option", "Win", "Loss"};
         resultOptions = new JComboBox(results);
 
-        surfaces = new String[]{"Hard", "Grass", "Clay"};
+        surfaces = new String[]{"Please select an option", "Hard", "Grass", "Clay"};
         surfaceOptions = new JComboBox(surfaces);
     }
 
-    private void initializeButtons() {
+    private void initializeButtons(ActionListener listener) {
         submitButton = new JButton("Submit");
         submitButton.setFocusable(false);
+        submitButton.addActionListener(listener);
 
         backButton = new JButton("Back");
         backButton.setFocusable(false);
+        backButton.addActionListener(listener);
     }
 
     private void configureAll() {
@@ -107,14 +109,14 @@ public class AddPage extends JFrame {
 
     private void configureLabels() {
         opponentLabel.setBounds(10, 0, 200, 50);
-        resultLabel.setBounds(10, 40, 100, 50);
-        surfaceLabel.setBounds(10, 80, 100, 50);
-        durationLabel.setBounds(10, 120, 100, 50);
+        resultLabel.setBounds(10, 40, 200, 50);
+        surfaceLabel.setBounds(10, 80, 200, 50);
+        durationLabel.setBounds(10, 120, 200, 50);
         dateLabel.setBounds(10, 160, 200, 50);
-        scoreLabel.setBounds(10, 200, 100, 50);
-        acesLabel.setBounds(10, 240, 100, 50);
+        scoreLabel.setBounds(10, 200, 200, 50);
+        acesLabel.setBounds(10, 240, 200, 50);
         doubleFaultsLabel.setBounds(10, 280, 200, 50);
-        winnersLabel.setBounds(10, 320, 100, 50);
+        winnersLabel.setBounds(10, 320, 200, 50);
         unforcedErrorsLabel.setBounds(10, 360, 200, 50);
     }
 
@@ -193,6 +195,54 @@ public class AddPage extends JFrame {
     private void addButtons() {
         this.add(submitButton);
         this.add(backButton);
+    }
+
+    public JButton getSubmitButton() {
+        return submitButton;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
+    }
+
+    public JComboBox getResultOptions() {
+        return resultOptions;
+    }
+
+    public JComboBox getSurfaceOptions() {
+        return surfaceOptions;
+    }
+
+    public JTextField getOpponentField() {
+        return opponentField;
+    }
+
+    public JTextField getDurationField() {
+        return durationField;
+    }
+
+    public JTextField getDateField() {
+        return dateField;
+    }
+
+    public JTextField getScoreField() {
+        return scoreField;
+    }
+
+    public JTextField getAcesField() {
+        return acesField;
+    }
+
+    public JTextField getDoubleFaultsField() {
+        return doubleFaultsField;
+    }
+
+    public JTextField getWinnersField() {
+        return winnersField;
+    }
+
+    public JTextField getUnforcedErrorsField() {
+        return unforcedErrorsField;
     }
 }
 
