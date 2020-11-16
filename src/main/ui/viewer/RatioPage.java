@@ -27,7 +27,7 @@ public class RatioPage extends JFrame {
 
     private void initializeButton() {
         backButton = new JButton();
-        backButton.setText("BACK TO HOME SCREEN");
+        backButton.setText("Back");
         backButton.setFocusable(false);
         backButton.setSize(400, 50);
     }
