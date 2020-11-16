@@ -24,6 +24,7 @@ public class JournalAppGui implements ActionListener {
     private DeletePage deletePage;
     private ViewPage viewPage;
     private RatioPage ratioPage;
+    private StatsPage statsPage;
 
     // EFFECTS: runs the journal application
     public JournalAppGui() {
@@ -44,6 +45,7 @@ public class JournalAppGui implements ActionListener {
         deletePageHandler(e);
         viewPageHandler(e);
         ratioPageHandler(e);
+        statsPageHandler(e);
     }
 
     private void launchPageHandler(ActionEvent e) {
@@ -98,8 +100,21 @@ public class JournalAppGui implements ActionListener {
         launchPage = new LaunchPage(this);
     }
 
-    private void select() {
+    private void select() { // !!!
+        TennisMatch match;
 
+        JList<String> list = viewPage.getViewPanel();
+        int index = list.getSelectedIndex();
+
+        match = journal.getMatchAt(index);
+
+        statsPage = new StatsPage(this, match);
+    }
+
+    private void statsPageHandler(ActionEvent e) {
+        if (statsPage != null && e.getSource() == statsPage.getBackButton()) {
+            statsPage.dispose();
+        }
     }
 
     private void ratioPageHandler(ActionEvent e) {

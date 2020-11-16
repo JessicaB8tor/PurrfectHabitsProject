@@ -21,15 +21,14 @@ public class RatioPage extends JFrame {
         label = new JLabel();
         label.setText(ratio);
         label.setFont(new Font("Arial", Font.BOLD, 200));
-        label.setHorizontalAlignment(JLabel.CENTER);
-        label.setVerticalAlignment(JLabel.CENTER);
+        label.setBounds(550, 200, 500, 500);
     }
 
     private void initializeButton() {
         backButton = new JButton();
         backButton.setText("Back");
         backButton.setFocusable(false);
-        backButton.setSize(400, 50);
+        backButton.setBounds(550, 700, 400, 50);
     }
 
     private void initializeListeners(ActionListener listener) {
@@ -42,6 +41,7 @@ public class RatioPage extends JFrame {
         this.add(label);
         this.setSize(1500, 1000);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLayout(null);
         this.setTitle("Tennis Match Journal");
         this.setIconImage(frameIcon.getImage());
         this.setLocationRelativeTo(null);

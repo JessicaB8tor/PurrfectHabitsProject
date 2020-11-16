@@ -23,7 +23,9 @@ public class TennisMatchJournal implements Writable {
     // EFFECTS: adds the given tennis match into the journal; do nothing if it has already
     //          been added
     public void addMatch(TennisMatch match) {
-        journal.add(match);
+        if (!journal.contains(match)) {
+            journal.add(match);
+        }
     }
 
     // EFFECTS: return true if match is in the journal; otherwise, return false
@@ -113,6 +115,11 @@ public class TennisMatchJournal implements Writable {
         JSONObject json = new JSONObject();
         json.put("matches", matchesToJson());
         return json;
+    }
+
+    // EFFECTS: returns the TennisMatch at the specified index
+    public TennisMatch getMatchAt(int index) {
+        return journal.get(index);
     }
 
     // EFFECTS: returns matches in journal as a JSON array

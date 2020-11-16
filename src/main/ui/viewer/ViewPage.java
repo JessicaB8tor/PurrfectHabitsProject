@@ -76,11 +76,7 @@ public class ViewPage extends JFrame {
         return selectButton;
     }
 
-
-
-
-
-
-
-
+    public JList<String> getViewPanel() {
+        return viewPanel;
+    }
 }
