@@ -11,6 +11,7 @@ public class LaunchPage extends JFrame {
     private JButton ratioButton;
     private JButton loadButton;
     private JButton saveButton;
+    private JButton quitButton;
     private JLabel mainGraphic;
 
     public LaunchPage(ActionListener listener) {
@@ -37,22 +38,25 @@ public class LaunchPage extends JFrame {
     private void initializeButtons() {
         addButton = new JButton("ADD A TENNIS MATCH");
         addButton.setFocusable(false);
-        addButton.setBounds(750, 290, 400, 50);
+        addButton.setBounds(750, 270, 400, 50);
         deleteButton = new JButton("DELETE A TENNIS MATCH");
         deleteButton.setFocusable(false);
-        deleteButton.setBounds(750, 350, 400, 50);
+        deleteButton.setBounds(750, 330, 400, 50);
         viewButton = new JButton("VIEW ALL MATCHES");
         viewButton.setFocusable(false);
-        viewButton.setBounds(750, 410, 400, 50);
+        viewButton.setBounds(750, 390, 400, 50);
         ratioButton = new JButton("VIEW WIN:LOSS RATIO");
         ratioButton.setFocusable(false);
-        ratioButton.setBounds(750, 470, 400, 50);
+        ratioButton.setBounds(750, 450, 400, 50);
         loadButton = new JButton("LOAD JOURNAL FROM FILE");
         loadButton.setFocusable(false);
-        loadButton.setBounds(750, 530, 400, 50);
+        loadButton.setBounds(750, 510, 400, 50);
         saveButton = new JButton("SAVE JOURNAL TO FILE");
         saveButton.setFocusable(false);
-        saveButton.setBounds(750, 590, 400, 50);
+        saveButton.setBounds(750, 570, 400, 50);
+        quitButton = new JButton("QUIT");
+        quitButton.setFocusable(false);
+        quitButton.setBounds(750, 630, 400, 50);
     }
 
     private void initializeListeners(ActionListener listener) {
@@ -62,6 +66,7 @@ public class LaunchPage extends JFrame {
         ratioButton.addActionListener(listener);
         loadButton.addActionListener(listener);
         saveButton.addActionListener(listener);
+        quitButton.addActionListener(listener);
     }
 
     private void initializeFrame() {
@@ -72,6 +77,7 @@ public class LaunchPage extends JFrame {
         this.add(ratioButton);
         this.add(loadButton);
         this.add(saveButton);
+        this.add(quitButton);
         this.add(mainGraphic);
         this.setSize(1500, 1000);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,5 +110,9 @@ public class LaunchPage extends JFrame {
 
     public JButton getSaveButton() {
         return saveButton;
+    }
+
+    public JButton getQuitButton() {
+        return quitButton;
     }
 }

@@ -1,12 +1,26 @@
-{"matches": [{
-    "duration": 60,
-    "date": "11/15/2020",
-    "winners": 1,
-    "isWon": true,
-    "score": "6-0 6-0",
-    "surface": "Hard",
-    "doubleFaults": 1,
-    "opponent": "Yang Lin",
-    "unforcedErrors": 1,
-    "aces": 1
-}]}
+{"matches": [
+    {
+        "duration": 60,
+        "date": "11/15/2020",
+        "winners": 1,
+        "isWon": true,
+        "score": "6-0 6-0",
+        "surface": "Hard",
+        "doubleFaults": 1,
+        "opponent": "Yang Lin",
+        "unforcedErrors": 1,
+        "aces": 1
+    },
+    {
+        "duration": 40,
+        "date": "11/16/2020",
+        "winners": 2,
+        "isWon": false,
+        "score": "0-6 0-6",
+        "surface": "Grass",
+        "doubleFaults": 10,
+        "opponent": "Roger Federer",
+        "unforcedErrors": 8,
+        "aces": 1
+    }
+]}

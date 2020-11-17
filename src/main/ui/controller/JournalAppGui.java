@@ -67,6 +67,9 @@ public class JournalAppGui implements ActionListener {
         if (e.getSource() == launchPage.getSaveButton()) {
             handleSave();
         }
+        if (e.getSource() == launchPage.getQuitButton()) {
+            handleQuit();
+        }
     }
 
     private void addPageHandler(ActionEvent e) {
@@ -303,5 +306,9 @@ public class JournalAppGui implements ActionListener {
                 "Can't find the specified match",
                 "Tennis Match Journal",
                 JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void handleQuit() {
+        launchPage.dispose();
     }
 }
