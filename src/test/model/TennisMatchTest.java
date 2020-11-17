@@ -9,12 +9,15 @@ class TennisMatchTest {
     TennisMatch testMatch1;
     TennisMatch testMatch2;
     TennisMatch testMatch3;
+    TennisMatch testMatch4;
     MatchDetails testDetails1;
     MatchDetails testDetails2;
     MatchDetails testDetails3;
+    MatchDetails testDetails4;
     MatchStats testStats1;
     MatchStats testStats2;
     MatchStats testStats3;
+    MatchStats testStats4;
 
     @BeforeEach
     void runBefore() {
@@ -29,6 +32,10 @@ class TennisMatchTest {
         testDetails3 = new MatchDetails("Yang Lin", false, "GRASS", 70, "1/1/2020");
         testStats3 = new MatchStats("0-6 3-6", 1, 5, 2, 11);
         testMatch3 = new TennisMatch(testDetails3, testStats3);
+
+        testDetails4 = new MatchDetails("James Blake", false, "GRASS", 70, "1/1/2020");
+        testStats4 = new MatchStats("0-6 3-6", 2, 5, 2, 11);
+        testMatch4 = new TennisMatch(testDetails4, testStats4);
     }
 
     @Test
@@ -55,9 +62,11 @@ class TennisMatchTest {
 
     @Test
     void testEqualsIsNotEqual() {
-        boolean equalsTest = testMatch1.equals(testMatch3);
+        boolean equalsTest1 = testMatch1.equals(testMatch3);
+        assertFalse(equalsTest1);
 
-        assertFalse(equalsTest);
+        boolean equalsTest2 = testMatch1.equals(testMatch4);
+        assertFalse(equalsTest2);
     }
 
     @Test
@@ -65,6 +74,13 @@ class TennisMatchTest {
         boolean equalsTest = testMatch1.equals("random string");
 
         assertFalse(equalsTest);
+    }
+
+    @Test
+    void testEqualsSameObject() {
+        boolean equalsTest = testMatch1.equals(testMatch1);
+
+        assertTrue(equalsTest);
     }
 
     @Test

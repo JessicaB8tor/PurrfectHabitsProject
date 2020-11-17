@@ -9,12 +9,20 @@ public class MatchDetailsTest {
     private MatchDetails testDetails1;
     private MatchDetails testDetails2;
     private MatchDetails testDetails3;
+    private MatchDetails testDetails4;
+    private MatchDetails testDetails5;
+    private MatchDetails testDetails6;
+    private MatchDetails testDetails7;
 
     @BeforeEach
     void runBefore() {
         testDetails1 = new MatchDetails("Yang Lin", false, "HARD", 45, "1/1/2020");
         testDetails2 = new MatchDetails("Yang Lin", false, "HARD", 45, "1/1/2020");
         testDetails3 = new MatchDetails("Roger Federer", false, "HARD", 45, "1/1/2020");
+        testDetails4 = new MatchDetails("Yang Lin", true, "HARD", 45, "1/1/2020");
+        testDetails5 = new MatchDetails("Yang Lin", false, "GRASS", 45, "1/1/2020");
+        testDetails6 = new MatchDetails("Yang Lin", false, "HARD", 55, "1/1/2020");
+        testDetails7 = new MatchDetails("Yang Lin", false, "HARD", 45, "1/2/2020");
     }
 
 
@@ -36,9 +44,20 @@ public class MatchDetailsTest {
 
     @Test
     void testEqualsIsNotEqual() {
-        boolean isEqual = testDetails1.equals(testDetails3);
+        boolean isEqual1 = testDetails1.equals(testDetails3);
+        assertFalse(isEqual1);
 
-        assertFalse(isEqual);
+        boolean isEqual2 = testDetails1.equals(testDetails4);
+        assertFalse(isEqual2);
+
+        boolean isEqual3 = testDetails1.equals(testDetails5);
+        assertFalse(isEqual3);
+
+        boolean isEqual4 = testDetails1.equals(testDetails6);
+        assertFalse(isEqual4);
+
+        boolean isEqual5 = testDetails1.equals(testDetails7);
+        assertFalse(isEqual5);
     }
 
     @Test
