@@ -61,6 +61,13 @@ class TennisMatchTest {
     }
 
     @Test
+    void testEqualsNotInstanceOf() {
+        boolean equalsTest = testMatch1.equals("random string");
+
+        assertFalse(equalsTest);
+    }
+
+    @Test
     void testHashCodesAreEqual() {
         int matchCode1 = testMatch1.hashCode();
         int matchCode2 = testMatch2.hashCode();

@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class MatchStatsTest {
     MatchStats testStats1;
@@ -39,6 +38,22 @@ public class MatchStatsTest {
         boolean isEqual = testStats1.equals(testStats3);
 
         assertFalse(isEqual);
+    }
+
+    @Test
+    void testEqualsNotAnInstanceOf() {
+        boolean isEqual = testStats1.equals("random string");
+
+        assertFalse(isEqual);
+    }
+
+    @Test
+    void testEqualsSameObject() {
+        MatchStats testStats4 = testStats3;
+
+        boolean isEqual = testStats3.equals(testStats4);
+
+        assertTrue(isEqual);
     }
 
     @Test
