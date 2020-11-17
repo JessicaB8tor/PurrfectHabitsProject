@@ -1,5 +1,6 @@
 package ui;
 
+import model.TennisMatchJournal;
 import ui.controller.JournalAppGui;
 
 public class Main {

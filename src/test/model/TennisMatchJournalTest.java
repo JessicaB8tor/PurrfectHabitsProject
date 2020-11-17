@@ -186,6 +186,27 @@ public class TennisMatchJournalTest {
         List<TennisMatch> journal = testJournal.getJournal();
         assertEquals(1, journal.size());
     }
+
+    @Test
+    void testGetMatchAt() {
+        testJournal.addMatch(testMatch0);
+        assertEquals(1, testJournal.journalLength());
+
+        TennisMatch match = testJournal.getMatchAt(0);
+        assertEquals(match.getMatchDetails().getOpponent(), testMatch0.getMatchDetails().getOpponent());
+    }
+
+    @Test
+    void testGetMatchAtEmptyJournal() {
+        assertEquals(0, testJournal.journalLength());
+
+        try {
+            TennisMatch match = testJournal.getMatchAt(0);
+            fail("It was supposed to throw an error");
+        } catch (IndexOutOfBoundsException e) {
+            // pass
+        }
+    }
 }
 
 
