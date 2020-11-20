@@ -7,12 +7,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// Represents the view page where the user can view a list of all the matches in the journal
 public class ViewPage extends JFrame {
     private JButton backButton;
     private JButton selectButton;
     private JList<String> viewPanel;
     private JScrollPane scrollPane;
 
+    // MODIFIES: this
+    // EFFECTS: initializes the view page
     public ViewPage(ActionListener listener, TennisMatchJournal journal) {
         initializeViewPanel(journal);
         initializeScrollPane();
@@ -20,6 +23,8 @@ public class ViewPage extends JFrame {
         initializeFrame();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the view panel
     public void initializeViewPanel(TennisMatchJournal journal) {
         DefaultListModel<String> listModel = new DefaultListModel();
 
@@ -36,12 +41,16 @@ public class ViewPage extends JFrame {
         viewPanel.setFont(new Font("Arial", Font.PLAIN, 25));
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the scroll pane
     private void initializeScrollPane() {
         scrollPane = new JScrollPane();
         scrollPane.setViewportView(viewPanel);
         scrollPane.setBounds(500, 100, 500, 700);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the buttons
     public void initializeButtons(ActionListener listener) {
         backButton = new JButton("Back");
         backButton.setFocusable(false);
@@ -54,8 +63,10 @@ public class ViewPage extends JFrame {
         selectButton.addActionListener(listener);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the frame
     public void initializeFrame() {
-        ImageIcon frameIcon = new ImageIcon("tennis_ball.png");
+        ImageIcon frameIcon = new ImageIcon("./data/tennis_ball.png");
         this.add(backButton);
         this.add(selectButton);
         this.add(scrollPane);

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// Represents the launch page (home screen) of the application
 public class LaunchPage extends JFrame {
     private JButton addButton;
     private JButton deleteButton;
@@ -14,15 +15,19 @@ public class LaunchPage extends JFrame {
     private JButton quitButton;
     private JLabel mainGraphic;
 
+    // MODIFIES: this
+    // EFFECTS: initializes the launch page
     public LaunchPage(ActionListener listener) {
-        initializeGraphics();
+        initializeGraphic();
         initializeButtons();
         initializeListeners(listener);
         initializeFrame();
     }
 
-    private void initializeGraphics() {
-        ImageIcon mainIcon = new ImageIcon("tennis-player.png");
+    // MODIFIES: this
+    // EFFECTS: initializes the graphic
+    private void initializeGraphic() {
+        ImageIcon mainIcon = new ImageIcon("./data/tennis-player.png");
         Image image = mainIcon.getImage();
         Image scaledImage = image.getScaledInstance(400, 400, Image.SCALE_SMOOTH);
         mainIcon = new ImageIcon(scaledImage);
@@ -35,6 +40,8 @@ public class LaunchPage extends JFrame {
         mainGraphic.setBounds(275, 200, 500, 500);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the buttons
     private void initializeButtons() {
         addButton = new JButton("ADD A TENNIS MATCH");
         addButton.setFocusable(false);
@@ -59,6 +66,8 @@ public class LaunchPage extends JFrame {
         quitButton.setBounds(750, 630, 400, 50);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the same action listener to all the buttons
     private void initializeListeners(ActionListener listener) {
         addButton.addActionListener(listener);
         deleteButton.addActionListener(listener);
@@ -69,8 +78,10 @@ public class LaunchPage extends JFrame {
         quitButton.addActionListener(listener);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the frame
     private void initializeFrame() {
-        ImageIcon frameIcon = new ImageIcon("tennis_ball.png");
+        ImageIcon frameIcon = new ImageIcon("./data/tennis_ball.png");
         this.add(addButton);
         this.add(deleteButton);
         this.add(viewButton);

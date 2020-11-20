@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// Represents the delete page where the user specifies the match to be deleted
 public class DeletePage extends JFrame {
     private JTextField opponentField;
     private JTextField dateField;
@@ -12,6 +13,8 @@ public class DeletePage extends JFrame {
     private JButton submitButton;
     private JButton backButton;
 
+    // MODIFIES: this
+    // EFFECTS: initializes the delete page
     public DeletePage(ActionListener listener) {
         initializeTextFields();
         initializeLabels();
@@ -19,6 +22,8 @@ public class DeletePage extends JFrame {
         initializeFrame();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the text fields
     private void initializeTextFields() {
         opponentField = new JTextField();
         opponentField.setBounds(230, 20, 350, 25);
@@ -28,6 +33,8 @@ public class DeletePage extends JFrame {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the labels
     private void initializeLabels() {
         opponentLabel = new JLabel();
         opponentLabel.setText("Opponent: (First Last)");
@@ -40,6 +47,8 @@ public class DeletePage extends JFrame {
         dateLabel.setFont(new Font("Arial", Font.BOLD, 13));
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the buttons
     private void initializeButtons(ActionListener listener) {
         submitButton = new JButton("Submit");
         submitButton.setBounds(10, 100, 100, 50);
@@ -52,8 +61,10 @@ public class DeletePage extends JFrame {
         backButton.addActionListener(listener);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the frame
     private void initializeFrame() {
-        ImageIcon frameIcon = new ImageIcon("tennis_ball.png");
+        ImageIcon frameIcon = new ImageIcon("./data/tennis_ball.png");
         this.add(opponentField);
         this.add(dateField);
         this.add(opponentLabel);

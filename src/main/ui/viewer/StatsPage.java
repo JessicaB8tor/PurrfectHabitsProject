@@ -6,16 +6,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// Represents the stats page where the user can view detailed statistics about a single match
 public class StatsPage extends JFrame {
     JTable table;
     JButton backButton;
 
+    // MODIFIES: this
+    // EFFECTS: initializes the stats page
     public StatsPage(ActionListener listener, TennisMatch match) {
         initializeTable(match);
         initializeButton(listener);
         initializeFrame();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the table
     private void initializeTable(TennisMatch match) {
         String[][] rowData = {
                 {"Opponent", match.getMatchDetails().getOpponent()},
@@ -38,6 +43,8 @@ public class StatsPage extends JFrame {
         table.setRowHeight(table.getRowHeight() + 30);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the back button
     private void initializeButton(ActionListener listener) {
         backButton = new JButton("Back");
         backButton.setFocusable(false);
@@ -45,8 +52,10 @@ public class StatsPage extends JFrame {
         backButton.addActionListener(listener);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the frame
     private void initializeFrame() {
-        ImageIcon frameIcon = new ImageIcon("tennis_ball.png");
+        ImageIcon frameIcon = new ImageIcon("./data/tennis_ball.png");
         this.add(backButton);
         this.add(table);
         this.setSize(500, 600);

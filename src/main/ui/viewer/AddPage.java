@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// Represents the add page where the user inputs the details and the stats of a
+// match to be added into the journal
 public class AddPage extends JFrame {
     JTextField opponentField;
     JComboBox resultOptions;
@@ -30,15 +32,19 @@ public class AddPage extends JFrame {
     String[] results;
     String[] surfaces;
 
+    // MODIFIES: this
+    // EFFECTS: initializes the add page
     public AddPage(ActionListener listener) {
         initializeLabels();
         initializeFields();
         initializeComboBoxes();
         initializeButtons(listener);
-        configureAll();
+        setAllBounds();
         initializeFrame();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the labels
     private void initializeLabels() {
         opponentLabel = new JLabel("Opponent: (First Last)");
         opponentLabel.setFont(new Font("Arial", Font.BOLD, 16));
@@ -71,6 +77,8 @@ public class AddPage extends JFrame {
         unforcedErrorsLabel.setFont(new Font("Arial", Font.BOLD, 16));
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the text fields
     private void initializeFields() {
         opponentField = new JTextField();
         durationField = new JTextField();
@@ -82,6 +90,8 @@ public class AddPage extends JFrame {
         unforcedErrorsField = new JTextField();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the combo boxes
     private void initializeComboBoxes() {
         results = new String[]{"Please select an option", "Win", "Loss"};
         resultOptions = new JComboBox(results);
@@ -90,6 +100,8 @@ public class AddPage extends JFrame {
         surfaceOptions = new JComboBox(surfaces);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the buttons
     private void initializeButtons(ActionListener listener) {
         submitButton = new JButton("Submit");
         submitButton.setFocusable(false);
@@ -100,14 +112,18 @@ public class AddPage extends JFrame {
         backButton.addActionListener(listener);
     }
 
-    private void configureAll() {
-        configureLabels();
-        configureTextFields();
-        configureComboBoxes();
-        configureButtons();
+    // MODIFIES: this
+    // EFFECTS: sets the bounds for all the components
+    private void setAllBounds() {
+        setLabelBounds();
+        setTextFieldBounds();
+        setComboBoxBounds();
+        setButtonBounds();
     }
 
-    private void configureLabels() {
+    // MODIFIES: this
+    // EFFECTS: sets the bounds for all the label components
+    private void setLabelBounds() {
         opponentLabel.setBounds(10, 0, 200, 50);
         resultLabel.setBounds(10, 40, 200, 50);
         surfaceLabel.setBounds(10, 80, 200, 50);
@@ -120,7 +136,9 @@ public class AddPage extends JFrame {
         unforcedErrorsLabel.setBounds(10, 360, 200, 50);
     }
 
-    private void configureTextFields() {
+    // MODIFIES: this
+    // EFFECTS: sets the bounds for all the text field components
+    private void setTextFieldBounds() {
         opponentField.setBounds(200, 12, 350, 25);
         durationField.setBounds(200, 132, 350, 25);
         dateField.setBounds(200, 172, 350, 25);
@@ -131,18 +149,24 @@ public class AddPage extends JFrame {
         unforcedErrorsField.setBounds(200, 372, 350, 25);
     }
 
-    private void configureComboBoxes() {
+    // MODIFIES: this
+    // EFFECTS: sets the bounds for all the combo box components
+    private void setComboBoxBounds() {
         resultOptions.setBounds(200, 52, 350, 25);
         surfaceOptions.setBounds(200, 92, 350, 25);
     }
 
-    private void configureButtons() {
+    // MODIFIES: this
+    // EFFECTS: sets the bounds for all the button components
+    private void setButtonBounds() {
         submitButton.setBounds(10, 425, 265, 50);
         backButton.setBounds(285, 425, 265, 50);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the frame
     private void initializeFrame() {
-        ImageIcon frameIcon = new ImageIcon("tennis_ball.png");
+        ImageIcon frameIcon = new ImageIcon("./data/tennis_ball.png");
 
         addAllToFrame();
 
@@ -156,6 +180,8 @@ public class AddPage extends JFrame {
         this.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds all the components to the frame
     private void addAllToFrame() {
         addLabels();
         addFields();
@@ -163,6 +189,8 @@ public class AddPage extends JFrame {
         addButtons();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds all the label components to the frame
     private void addLabels() {
         this.add(opponentLabel);
         this.add(resultLabel);
@@ -176,6 +204,8 @@ public class AddPage extends JFrame {
         this.add(unforcedErrorsLabel);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds all the text field components to the frame
     private void addFields() {
         this.add(opponentField);
         this.add(durationField);
@@ -187,11 +217,15 @@ public class AddPage extends JFrame {
         this.add(unforcedErrorsField);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds all the combo box components to the frame
     private void addComboBoxes() {
         this.add(resultOptions);
         this.add(surfaceOptions);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds all the button components to the frame
     private void addButtons() {
         this.add(submitButton);
         this.add(backButton);
