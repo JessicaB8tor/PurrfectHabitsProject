@@ -28,3 +28,14 @@ Secondly, I wanted to create an application that was related to one of my passio
 
 For this phase, I made my existing TennisMatchJournal class robust by making the getMatchAt(int index) method
 throw an InvalidIndexException for indexes that are not in the range 0 to journalLength() - 1.
+
+## Phase 4: Task 3
+
+Ideas for refactoring:
+1) I could create new classes that represent some of the fields for MatchDetails and MatchStats. Right now,
+   all their fields are stored as primitive data, which is not ideal as things like score, date, surface,
+   and result could be encapsulated into their own classes. MatchDetails and MatchStats would then have
+   uni-directional association relationships with these classes.
+2) I could have all my "Page" classes extend an abstract class or interface called "Page". Page would then
+   encapsulate all of the shared data and behaviour across all of these "Page" classes and would help avoid
+   duplication of code.
