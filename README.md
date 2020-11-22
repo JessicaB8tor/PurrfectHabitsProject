@@ -39,3 +39,8 @@ Ideas for refactoring:
 2) I could have all my "Page" classes extend an abstract class or interface called "Page". Page would then
    encapsulate all of the shared data and behaviour across all of these "Page" classes and would help avoid
    duplication of code.
+3) I could refactor my JournalAppGui class to increase the cohesion inside the class. Currently, I have one
+   large method that listens for all events in all of the "Page" classes. I could instead delegate the 
+   responsibilities of listening for events to each individual Page. I could do this by creating a "Listener" 
+   class for each Page and having the listener method only listen for events that occur in the page that it is 
+   associated with.
