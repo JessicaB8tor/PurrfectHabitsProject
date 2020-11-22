@@ -23,3 +23,8 @@ Secondly, I wanted to create an application that was related to one of my passio
 4) As a user, I want to be able to delete a match from the list of matches that I've added into the program.
 5) As a user, I want to be able to save my journal to file.
 6) As a user, I want to be able to load my journal from file.
+
+## Phase 4: Task 2
+
+For this phase, I made my existing TennisMatchJournal class robust by making the getMatchAt(int index) method
+throw an InvalidIndexException for indexes that are not in the range 0 to journalLength() - 1.

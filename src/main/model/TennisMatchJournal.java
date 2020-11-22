@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.InvalidIndexException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -118,8 +119,14 @@ public class TennisMatchJournal implements Writable {
     }
 
     // EFFECTS: returns the TennisMatch at the specified index
-    public TennisMatch getMatchAt(int index) {
-        return journal.get(index);
+    //          (throws InvalidIndexException if index is not
+    //          in the range [0, journalLength() - 1])
+    public TennisMatch getMatchAt(int index) throws InvalidIndexException {
+        if (!(index >= 0) || !(index <= journalLength() - 1)) {
+            throw new InvalidIndexException();
+        } else {
+            return journal.get(index);
+        }
     }
 
     // EFFECTS: returns matches in journal as a JSON array

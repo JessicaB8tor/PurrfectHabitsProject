@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.InvalidIndexException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -192,8 +193,12 @@ public class TennisMatchJournalTest {
         testJournal.addMatch(testMatch0);
         assertEquals(1, testJournal.journalLength());
 
-        TennisMatch match = testJournal.getMatchAt(0);
-        assertEquals(match.getMatchDetails().getOpponent(), testMatch0.getMatchDetails().getOpponent());
+        try {
+            TennisMatch match = testJournal.getMatchAt(0);
+            assertEquals(match.getMatchDetails().getOpponent(), testMatch0.getMatchDetails().getOpponent());
+        } catch (InvalidIndexException e) {
+            fail("InvalidIndexException should not have been thrown");
+        }
     }
 
     @Test
@@ -202,8 +207,36 @@ public class TennisMatchJournalTest {
 
         try {
             TennisMatch match = testJournal.getMatchAt(0);
-            fail("It was supposed to throw an error");
-        } catch (IndexOutOfBoundsException e) {
+            fail("InvalidIndexException was supposed to be thrown");
+        } catch (InvalidIndexException e) {
+            // pass
+        }
+    }
+
+    @Test
+    void testGetMatchAtIndexTooLarge() {
+        testJournal.addMatch(testMatch0);
+        testJournal.addMatch(testMatch1);
+        testJournal.addMatch(testMatch2);
+
+        try {
+            testJournal.getMatchAt(3);
+            fail("InvalidIndexException was supposed to be thrown");
+        } catch (InvalidIndexException e) {
+            // pass
+        }
+    }
+
+    @Test
+    void testGetMatchAtNegativeIndex() {
+        testJournal.addMatch(testMatch0);
+        testJournal.addMatch(testMatch1);
+        testJournal.addMatch(testMatch2);
+
+        try {
+            testJournal.getMatchAt(-1);
+            fail("InvalidIndexException was supposed to be thrown");
+        } catch (InvalidIndexException e) {
             // pass
         }
     }

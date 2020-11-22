@@ -25,7 +25,7 @@ public class ViewPage extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: initializes the view panel
-    public void initializeViewPanel(TennisMatchJournal journal) {
+    private void initializeViewPanel(TennisMatchJournal journal) {
         DefaultListModel<String> listModel = new DefaultListModel();
 
         for (TennisMatch match : journal.getJournal()) {
@@ -51,7 +51,7 @@ public class ViewPage extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: initializes the buttons
-    public void initializeButtons(ActionListener listener) {
+    private void initializeButtons(ActionListener listener) {
         backButton = new JButton("Back");
         backButton.setFocusable(false);
         backButton.setBounds(530, 850, 200, 50);
@@ -65,7 +65,7 @@ public class ViewPage extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: initializes the frame
-    public void initializeFrame() {
+    private void initializeFrame() {
         ImageIcon frameIcon = new ImageIcon("./data/tennis_ball.png");
         this.add(backButton);
         this.add(selectButton);

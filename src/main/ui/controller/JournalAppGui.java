@@ -4,6 +4,7 @@ import model.MatchDetails;
 import model.MatchStats;
 import model.TennisMatch;
 import model.TennisMatchJournal;
+import model.exceptions.InvalidIndexException;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.viewer.*;
@@ -260,9 +261,12 @@ public class JournalAppGui implements ActionListener {
         JList<String> list = viewPage.getViewPanel();
         int index = list.getSelectedIndex();
 
-        match = journal.getMatchAt(index);
-
-        statsPage = new StatsPage(this, match);
+        try {
+            match = journal.getMatchAt(index);
+            statsPage = new StatsPage(this, match);
+        } catch (InvalidIndexException e) {
+            System.out.println("Index is invalid");
+        }
     }
 
     // MODIFIES: this
@@ -274,7 +278,7 @@ public class JournalAppGui implements ActionListener {
 
     // =============================== STATS PAGE HANDLERS ===============================
 
-    public void handleStatsBack() {
+    private void handleStatsBack() {
         statsPage.dispose();
     }
 
