@@ -265,7 +265,10 @@ public class JournalAppGui implements ActionListener {
             match = journal.getMatchAt(index);
             statsPage = new StatsPage(this, match);
         } catch (InvalidIndexException e) {
-            System.out.println("Index is invalid");
+            JOptionPane.showMessageDialog(null,
+                    "Please select a valid match",
+                    "Tennis Match Journal",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
