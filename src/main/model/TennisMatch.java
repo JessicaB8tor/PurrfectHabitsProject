@@ -5,12 +5,13 @@ import persistence.Writable;
 
 import java.util.Objects;
 // YANG WAS HERE
+//Jessica is so very cool but not Yang
 // Represents the details and statistics of a tennis match
 // Note: The toJson() method in this class is largely based on the
 //       method with the same name found in the Thingy class in the
 //       WorkRoom application provided to us on GitHub.
 
-//Jessicaaaaaaaaaaaa
+//Jessicaaaaaaaaaaa
 public class TennisMatch implements Writable {
     private MatchDetails matchDetails;
     private MatchStats matchStats;
