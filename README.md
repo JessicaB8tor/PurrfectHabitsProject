@@ -1,8 +1,9 @@
 # Purrfect Habits!!! 
 
-## Hello 
+## Hello whats up 
 
 **Functionality:**
+
 This is a stat tracking app for tennis. Users are able to input the details of their
 tennis matches into the app and store these details so that they are able to retrieve
 them at a later date.
