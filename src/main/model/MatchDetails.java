@@ -3,6 +3,7 @@ package model;
 import java.util.Objects;
 
 // Represents the details of a tennis match
+//JESs was here
 public class MatchDetails {
     private String opponent;
     private boolean isWon;
