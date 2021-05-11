@@ -1,0 +1,35 @@
+Index: src/main/model/MatchStats.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model;\r\n\r\nimport java.util.Objects;\r\n// YANG WAS HERE\r\n// Represents common stats for a tennis match\r\npublic class MatchStats {\r\n    private String score;\r\n    private int aces;\r\n    private int doubleFaults;\r\n    private int winners;\r\n    private int unforcedErrors;\r\n\r\n    // EFFECTS: Initializes the stats of a tennis match.\r\n    public MatchStats(String score, int aces, int doubleFaults, int winners, int unforcedErrors) {\r\n        this.score = score;\r\n        this.aces = aces;\r\n        this.doubleFaults = doubleFaults;\r\n        this.winners = winners;\r\n        this.unforcedErrors = unforcedErrors;\r\n    }\r\n\r\n    public String getScore() {\r\n        return score;\r\n    }\r\n\r\n    public int getAces() {\r\n        return aces;\r\n    }\r\n\r\n    public int getDoubleFaults() {\r\n        return doubleFaults;\r\n    }\r\n\r\n    public int getWinners() {\r\n        return winners;\r\n    }\r\n\r\n    public int getUnforcedErrors() {\r\n        return unforcedErrors;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) {\r\n            return true;\r\n        }\r\n        if (!(o instanceof MatchStats)) {\r\n            return false;\r\n        }\r\n        MatchStats that = (MatchStats) o;\r\n        return getAces() == that.getAces()\r\n                &&\r\n                getDoubleFaults() == that.getDoubleFaults()\r\n                &&\r\n                getWinners() == that.getWinners()\r\n                &&\r\n                getUnforcedErrors() == that.getUnforcedErrors()\r\n                &&\r\n                Objects.equals(getScore(), that.getScore());\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        return Objects.hash(getScore(), getAces(), getDoubleFaults(), getWinners(), getUnforcedErrors());\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/model/MatchStats.java	(revision e587e6f39d65b161621fa11b6b7b7fec42dbf87e)
++++ src/main/model/MatchStats.java	(date 1620709728516)
+@@ -3,6 +3,7 @@
+ import java.util.Objects;
+ // YANG WAS HERE
+ // Represents common stats for a tennis match
++
+ public class MatchStats {
+     private String score;
+     private int aces;
+Index: src/main/model/TennisMatch.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model;\r\n\r\nimport org.json.JSONObject;\r\nimport persistence.Writable;\r\n\r\nimport java.util.Objects;\r\n\r\n// Represents the details and statistics of a tennis match\r\n// Note: The toJson() method in this class is largely based on the\r\n//       method with the same name found in the Thingy class in the\r\n//       WorkRoom application provided to us on GitHub.\r\npublic class TennisMatch implements Writable {\r\n    private MatchDetails matchDetails;\r\n    private MatchStats matchStats;\r\n\r\n    // EFFECTS: initializes a tennis match; sets up its details and stats\r\n    public TennisMatch(MatchDetails md, MatchStats ms) {\r\n        matchDetails = md;\r\n        matchStats = ms;\r\n    }\r\n\r\n    public MatchDetails getMatchDetails() {\r\n        return matchDetails;\r\n    }\r\n\r\n    public MatchStats getMatchStats() {\r\n        return matchStats;\r\n    }\r\n\r\n    @Override\r\n    // EFFECTS: returns tennis match as a JSON object\r\n    public JSONObject toJson() {\r\n        JSONObject json = new JSONObject();\r\n\r\n        json.put(\"opponent\", matchDetails.getOpponent());\r\n        json.put(\"isWon\", matchDetails.getIsWon());\r\n        json.put(\"surface\", matchDetails.getSurface());\r\n        json.put(\"duration\", matchDetails.getDuration());\r\n        json.put(\"date\", matchDetails.getDate());\r\n\r\n        json.put(\"score\", matchStats.getScore());\r\n        json.put(\"aces\", matchStats.getAces());\r\n        json.put(\"doubleFaults\", matchStats.getDoubleFaults());\r\n        json.put(\"winners\", matchStats.getWinners());\r\n        json.put(\"unforcedErrors\", matchStats.getUnforcedErrors());\r\n\r\n        return json;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) {\r\n            return true;\r\n        }\r\n        if (!(o instanceof TennisMatch)) {\r\n            return false;\r\n        }\r\n        TennisMatch that = (TennisMatch) o;\r\n        return Objects.equals(getMatchDetails(), that.getMatchDetails())\r\n                &&\r\n                Objects.equals(getMatchStats(), that.getMatchStats());\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        return Objects.hash(getMatchDetails(), getMatchStats());\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/model/TennisMatch.java	(revision e587e6f39d65b161621fa11b6b7b7fec42dbf87e)
++++ src/main/model/TennisMatch.java	(date 1620709728527)
+@@ -9,6 +9,8 @@
+ // Note: The toJson() method in this class is largely based on the
+ //       method with the same name found in the Thingy class in the
+ //       WorkRoom application provided to us on GitHub.
++
++//Jessicaaaaaaaaaaaa
+ public class TennisMatch implements Writable {
+     private MatchDetails matchDetails;
+     private MatchStats matchStats;
