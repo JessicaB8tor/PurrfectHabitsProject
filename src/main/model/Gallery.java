@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static model.Award.AwardType.FELINE_GOOD;
+import static model.Award.AwardType.PAWSOME_ACHIEVEMENT;
 
 // represents a gallery where the user can look at all their awards
 public class Gallery {
@@ -35,15 +36,18 @@ public class Gallery {
         return bestStreakAwards;
     }
 
-    // TODO: handle the case where you add an award and it's now equal to your last streak
     public void addAward(Award award) {
         if (award.getAwardType() == FELINE_GOOD) {
             felineGoodAwards.add(award);
-        } else {
+        } else if (award.getAwardType() == PAWSOME_ACHIEVEMENT) {
             pawsomeAchievementAwards.add(award);
         }
 
         allAwards.add(award);
+
+        if (allAwards.size() >= bestStreakAwards.size()) {
+            bestStreakAwards = allAwards;
+        }
     }
 
     public void clearAwards() {

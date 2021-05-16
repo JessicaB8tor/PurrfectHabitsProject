@@ -43,6 +43,10 @@ public class Habit {
     public HabitType getHabitType() {
         return habitType;
     }
+
+    public Gallery getAwardsGallery() {
+        return awardsGallery;
+    }
 }
 
 

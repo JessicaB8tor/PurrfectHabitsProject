@@ -17,7 +17,7 @@
 ////       code in the TellerApp Class in the TellerApp application provided to us on GitHub.
 ////       URL: https://github.students.cs.ubc.ca/CPSC210/TellerApp
 //public class JournalApp {
-//    private static final String JSON_STORE = "./data/journal.json";
+//    private static final String JSON_STORE = "./data/habits.json";
 //    private TennisMatchJournal journal;
 //    private Scanner input;
 //    private JsonReader jsonReader;

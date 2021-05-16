@@ -17,7 +17,7 @@
 //
 //// Tennis match journal application
 //public class JournalAppGui implements ActionListener {
-//    private static final String JSON_STORE = "./data/journal.json";
+//    private static final String JSON_STORE = "./data/habits.json";
 //    private TennisMatchJournal journal;
 //    private JsonReader jsonReader;
 //    private JsonWriter jsonWriter;
