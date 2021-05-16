@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -21,7 +20,7 @@ import java.util.List;
 
 public class Dashboard extends Application {
     BorderPane borderPane;
-    //String css;
+    VBox leftVBox;
 
     public static void main(String[] args) {
         launch(args);
@@ -33,8 +32,7 @@ public class Dashboard extends Application {
 
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
-        borderPane.setBackground(new Background(new BackgroundFill(Color.rgb(255, 203, 61), null, null)));
-        //css = this.getClass().getResource("stylesheet.css").toExternalForm();
+        borderPane.setStyle("-fx-background-color: #FFCB3D");
         createTopHBox();
         createBottomHBox();
         createLeftVBox();
@@ -49,8 +47,7 @@ public class Dashboard extends Application {
 
     private void createTopHBox() throws FileNotFoundException {
         HBox topHBox = new HBox();
-        topHBox.setBackground(new Background(new BackgroundFill(Color.rgb(134, 208, 247), null, null)));
-        //topHBox.getStylesheets().add(css);
+        topHBox.setStyle("-fx-background-color: #86D0F7FF");
         topHBox.setAlignment(Pos.TOP_CENTER);
 
         //Image Stuff
@@ -71,7 +68,7 @@ public class Dashboard extends Application {
 
     private void createBottomHBox() {
         HBox bottomHBox = new HBox();
-        bottomHBox.setBackground(new Background(new BackgroundFill(Color.rgb(134, 208, 247), null, null)));
+        bottomHBox.setStyle("-fx-background-color: #86D0F7FF");
         bottomHBox.setAlignment(Pos.CENTER);
 
         //Label Stuff
@@ -80,22 +77,27 @@ public class Dashboard extends Application {
 
         bottomHBox.getChildren().add(quote);
         borderPane.setBottom(bottomHBox);
-        //TODO: Customize bottom HBox (Settings/additional stats)
-
     }
 
-    private void createLeftVBox() {
-        VBox leftVbox = new VBox();
-        leftVbox.setAlignment(Pos.TOP_CENTER);
-        leftVbox.setSpacing(60);
-        leftVbox.setPadding(new Insets(10, 50, 50, 50));
+    private void createLeftVBox() throws FileNotFoundException {
+        leftVBox = new VBox();
+        leftVBox.setAlignment(Pos.TOP_CENTER);
+        leftVBox.setSpacing(60);
+        leftVBox.setPadding(new Insets(10, 50, 50, 50));
 
         //Label Stuff
         Label label = new Label("Jessica Bator");
         label.setFont(new Font("Showcard Gothic", 30));
-
+        leftVBox.getChildren().add(label);
 
         //Button Stuff
+        buttonSetup();
+
+
+        borderPane.setLeft(leftVBox);
+    }
+
+    private void buttonSetup() {
         Button myHabits = new Button("MY HABITS");
         Button addHabit = new Button("ADD HABIT");
         Button deleteHabit = new Button("DELETE HABIT");
@@ -109,17 +111,12 @@ public class Dashboard extends Application {
 
         }
 
-
-
-        leftVbox.getChildren().addAll(label, myHabits, addHabit, deleteHabit);
-        borderPane.setLeft(leftVbox);
-
+        leftVBox.getChildren().addAll(myHabits, addHabit, deleteHabit);
     }
 
     private void createCenterGridPane() {
         GridPane centerGridPane = new GridPane();
         borderPane.setCenter(centerGridPane);
         //TODO: This is where graph will go (API?, DS.js? other?)
-
     }
 }
