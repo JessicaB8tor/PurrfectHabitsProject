@@ -1,6 +1,5 @@
 package ui.controller;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,17 +20,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Dashboard extends Application {
+public class DashboardPage  {
     BorderPane borderPane;
     VBox leftVBox;
+    //Stage primaryStage;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public DashboardPage(Stage primaryStage) throws Exception {
+       // primaryStage = new Stage();
+        //start(primaryStage);
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Dashboard");
+
+
+   // public static void main(String[] args) {
+    //    launch(args);
+   // }
+
+//    @Override
+//    public void start(Stage primaryStage) throws Exception {
+      //  primaryStage.setTitle("Dashboard");
 
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
@@ -50,11 +56,12 @@ public class Dashboard extends Application {
 
     private void createTopHBox() throws FileNotFoundException {
         HBox topHBox = new HBox();
-        topHBox.setStyle("-fx-background-color: #86D0F7FF");
+        topHBox.setStyle("-fx-background-color: #86D0F7");
         topHBox.setAlignment(Pos.TOP_CENTER);
 
         //Image Stuff
         FileInputStream stream = new FileInputStream("data/catLogo.png");
+        //FileInputStream stream = new FileInputStream("https://cdn2.thecatapi.com/images/hi.jpg");
         Image image = new Image(stream);
         ImageView logo = new ImageView(image);
         logo.setFitWidth(100);
@@ -108,7 +115,7 @@ public class Dashboard extends Application {
         buttons.add(myHabits);
         buttons.add(addHabit);
         buttons.add(deleteHabit);
-        for (Button b: buttons) {
+        for (Button b : buttons) {
             b.setFont(new Font("Dosis Bold", 20));
             b.setStyle("-fx-background-color: #86D0F7");
 
@@ -118,6 +125,7 @@ public class Dashboard extends Application {
     }
 
     private void createCenterGridPane() {
+       // Graph graph = new Graph(borderPane);
         //TODO: Put graph into seperate class
         //TODO: Figure out some styling/CSS for graph
         //TODO: Connect real data/stats to graph
