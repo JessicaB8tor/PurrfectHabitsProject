@@ -8,24 +8,12 @@ public class Award {
         FELINE_GOOD, PAWSOME_ACHIEVEMENT
     }
 
-    String awardTitle;
-    Image awardImage;
-    LocalDate dateReceived;
+    LocalDate dateReceived; // as long as you know the award's date, you can retrieve it from the database
     AwardType awardType;
 
-    public Award(String awardTitle, Image awardImage, LocalDate dateReceived, AwardType awardType) {
-        this.awardTitle = awardTitle;
-        this.awardImage = awardImage;
+    public Award(LocalDate dateReceived, AwardType awardType) {
         this.dateReceived = dateReceived;
         this.awardType = awardType;
-    }
-
-    public String getAwardTitle() {
-        return awardTitle;
-    }
-
-    public Image getAwardImage() {
-        return awardImage;
     }
 
     public LocalDate getDateReceived() {

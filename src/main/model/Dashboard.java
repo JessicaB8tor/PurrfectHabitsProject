@@ -41,6 +41,11 @@ public class Dashboard {
         if (!allHabits.contains(habit)) {
             allHabits.add(habit);
         }
+
+        // TODO: un-hardcode this
+        String destination = "C:\\Users\\ylynn\\OneDrive\\Documents\\Coding Projects\\PurrfectHabits\\data\\habits";
+        FolderManager folderManager = new FolderManager(destination);
+        folderManager.createHabitFolder(habit.getTitle());
     }
 
     // remove habit from proper habits list, then remove it from allHabits

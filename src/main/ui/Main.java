@@ -29,7 +29,7 @@ public class Main {
         StringBuffer responseContent = new StringBuffer();
 
         try {
-            URL url = new URL("https://zenquotes.io/api/random");
+            URL url = new URL("https://api.thecatapi.com/v1/images/search");
             connection = (HttpURLConnection) url.openConnection();
 
             // Request Setup
@@ -63,7 +63,7 @@ public class Main {
 
         JSONArray array = new JSONArray(responseContent.toString());
         JSONObject object = array.getJSONObject(0);
-        System.out.println("quote: " + object.getString("q") +  "\n" + "author: " + object.getString("a"));
+        System.out.println("url: " + object.getString("url"));
 
 
 
