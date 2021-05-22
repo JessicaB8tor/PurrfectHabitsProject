@@ -1,5 +1,7 @@
 package model;
 
+import model.exceptions.HabitAlreadyExistsException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class Dashboard {
     }
 
     // add new habit to proper habits list, then add it to allHabits
-    public void addHabit(Habit habit) {
+    public void addHabit(Habit habit) throws HabitAlreadyExistsException {
         if (habit.getHabitType() == MAKEABLE && !habitsToMake.contains(habit)) {
             habitsToMake.add(habit);
         } else if (habit.getHabitType() == BREAKABLE && !habitsToBreak.contains(habit)) {
@@ -45,7 +47,7 @@ public class Dashboard {
         // TODO: un-hardcode this
         String destination = "C:\\Users\\ylynn\\OneDrive\\Documents\\Coding Projects\\PurrfectHabits\\data\\habits";
         FolderManager folderManager = new FolderManager(destination);
-        folderManager.createHabitFolder(habit.getTitle());
+        folderManager.createHabitDirectory(habit.getTitle());
     }
 
     // remove habit from proper habits list, then remove it from allHabits
@@ -57,5 +59,9 @@ public class Dashboard {
         }
 
         allHabits.remove(habit);
+
+        String destination = "C:\\Users\\ylynn\\OneDrive\\Documents\\Coding Projects\\PurrfectHabits\\data\\habits";
+        FolderManager folderManager = new FolderManager(destination);
+        folderManager.deleteHabitDirectory(habit.getTitle());
     }
 }
