@@ -1,6 +1,5 @@
 package ui.controller;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,18 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Dashboard extends Application {
+public class DashboardPage  {
     BorderPane borderPane;
     VBox leftVBox;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Dashboard");
-
+    public DashboardPage(Stage primaryStage) throws Exception {
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
         borderPane.setStyle("-fx-background-color: #FFCB3D");
@@ -50,11 +42,12 @@ public class Dashboard extends Application {
 
     private void createTopHBox() throws FileNotFoundException {
         HBox topHBox = new HBox();
-        topHBox.setStyle("-fx-background-color: #86D0F7FF");
+        topHBox.setStyle("-fx-background-color: #86D0F7");
         topHBox.setAlignment(Pos.TOP_CENTER);
 
         //Image Stuff
         FileInputStream stream = new FileInputStream("data/catLogo.png");
+        //FileInputStream stream = new FileInputStream("https://cdn2.thecatapi.com/images/hi.jpg");
         Image image = new Image(stream);
         ImageView logo = new ImageView(image);
         logo.setFitWidth(100);
@@ -70,6 +63,7 @@ public class Dashboard extends Application {
     }
 
     private void createBottomHBox() {
+        //TODO: Connect actual quote API stuff
         HBox bottomHBox = new HBox();
         bottomHBox.setStyle("-fx-background-color: #86D0F7");
         bottomHBox.setAlignment(Pos.CENTER);
@@ -83,6 +77,8 @@ public class Dashboard extends Application {
     }
 
     private void createLeftVBox() throws FileNotFoundException {
+        //TODO: Connect data that shows actual user's name instead of Jessica Bator each time
+        //TODO: Add profile picture feature beside name?
         leftVBox = new VBox();
         leftVBox.setAlignment(Pos.TOP_CENTER);
         leftVBox.setSpacing(60);
@@ -101,6 +97,7 @@ public class Dashboard extends Application {
     }
 
     private void buttonSetup() {
+        //TODO: Add functionality/listeners for buttons
         Button myHabits = new Button("MY HABITS");
         Button addHabit = new Button("ADD HABIT");
         Button deleteHabit = new Button("DELETE HABIT");
@@ -108,7 +105,7 @@ public class Dashboard extends Application {
         buttons.add(myHabits);
         buttons.add(addHabit);
         buttons.add(deleteHabit);
-        for (Button b: buttons) {
+        for (Button b : buttons) {
             b.setFont(new Font("Dosis Bold", 20));
             b.setStyle("-fx-background-color: #86D0F7");
 
@@ -119,7 +116,7 @@ public class Dashboard extends Application {
 
     private void createCenterGridPane() {
         //TODO: Put graph into seperate class
-        //TODO: Figure out some styling/CSS for graph
+        //TODO: Figure out some styling/CSS for graph (look less bad)
         //TODO: Connect real data/stats to graph
 
         GridPane centerGridPane = new GridPane();
@@ -154,10 +151,6 @@ public class Dashboard extends Application {
         series.getData().add(new XYChart.Data(3, 10));
         series.getData().add(new XYChart.Data(4, 5));
         series.getData().add(new XYChart.Data(5, 20));
-
-//        Node line = series.getNode().lookup(".chart-series-line");
-//        line.setStyle("-fx-fill: #FF0000");
-
         //Setting the data to Line chart
         linechart.getData().add(series);
 
