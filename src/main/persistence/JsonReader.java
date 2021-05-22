@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 //       based off the WorkRoom application that was given to us on GitHub.
 //       URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class JsonReader {
-    private String source; // should be "./data/habits";
+    private String source; // should be "./data/habits"
 
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
@@ -62,11 +62,11 @@ public class JsonReader {
         String purpose = jsonObject.getString("purpose");
         boolean isCompleted = jsonObject.getBoolean("isCompleted");
 
-        int currentStreak = jsonObject.getJSONObject("stats").getInt("currentStreak");
-        int longestStreak = jsonObject.getJSONObject("stats").getInt("longestStreak");
-        LocalDate date = LocalDate.parse(jsonObject.getJSONObject("stats").getString("dateCreated"));
-        int numDaysSinceStarted = jsonObject.getJSONObject("stats").getInt("numDaysSinceStarted");
-        int numSetBacks = jsonObject.getJSONObject("stats").getInt("numSetBacks");
+        int currentStreak = jsonObject.getJSONObject("habitStats").getInt("currentStreak");
+        int longestStreak = jsonObject.getJSONObject("habitStats").getInt("longestStreak");
+        LocalDate date = LocalDate.parse(jsonObject.getJSONObject("habitStats").getString("dateCreated"));
+        int numDaysSinceStarted = jsonObject.getJSONObject("habitStats").getInt("numDaysSinceStarted");
+        int numSetBacks = jsonObject.getJSONObject("habitStats").getInt("numSetBacks");
         Stats stats = new Stats(currentStreak, longestStreak, date, numDaysSinceStarted, numSetBacks);
 
         Habit.HabitType habitType = Habit.HabitType.valueOf(jsonObject.getString("habitType"));
@@ -75,10 +75,10 @@ public class JsonReader {
         ArrayList<Award> pawsomeAchievementAwards = new ArrayList<Award>();
         ArrayList<Award> allAwards = new ArrayList<Award>();
         ArrayList<Award> bestStreakAwards = new ArrayList<Award>();
-        JSONArray felineArray = jsonObject.getJSONObject("gallery").getJSONArray("felineGoodAwards");
-        JSONArray pawsomeArray = jsonObject.getJSONObject("gallery").getJSONArray("pawsomeAchievementAwards");
-        JSONArray allAwardsArray = jsonObject.getJSONObject("gallery").getJSONArray("allAwards");
-        JSONArray bestStreakArray = jsonObject.getJSONObject("gallery").getJSONArray("bestStreakAwards");
+        JSONArray felineArray = jsonObject.getJSONObject("awardsGallery").getJSONArray("felineGoodAwards");
+        JSONArray pawsomeArray = jsonObject.getJSONObject("awardsGallery").getJSONArray("pawsomeAchievementAwards");
+        JSONArray allAwardsArray = jsonObject.getJSONObject("awardsGallery").getJSONArray("allAwards");
+        JSONArray bestStreakArray = jsonObject.getJSONObject("awardsGallery").getJSONArray("bestStreakAwards");
         for (Object object : felineArray) {
             JSONObject obj = (JSONObject) object;
             Award award = new Award(LocalDate.parse(obj.getString("dateReceived")), Award.AwardType.valueOf(obj.getString("awardType")));

@@ -1,11 +1,13 @@
 package persistence;
 
-import model.TennisMatchJournal;
+import model.Dashboard;
+import model.Habit;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.List;
 
 // Represents a writer that writes JSON representation of journal to file
 // Note: The structure of this class and all of the methods inside it are
@@ -14,7 +16,7 @@ import java.io.PrintWriter;
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
-    private String destination;
+    private String destination; // this will always be something like "./data/habits"
 
     // EFFECTS: constructs writer to write to destination file
     public JsonWriter(String destination) {
@@ -22,16 +24,9 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: opens writer; throws FileNotFoundException if destination file
-    //          cannot be opened for writing
-    public void open() throws FileNotFoundException {
-        writer = new PrintWriter(new File(destination));
-    }
-
-    // MODIFIES: this
-    // EFFECTS: writes JSON representation of journal to file
-    public void write(TennisMatchJournal journal) {
-        JSONObject json = journal.toJson();
+    // EFFECTS: writes JSON representation of dashboard to file
+    public void write(Habit habit) {
+        JSONObject json = habit.toJson();
         saveToFile(json.toString(TAB));
     }
 
@@ -41,9 +36,19 @@ public class JsonWriter {
         writer.print(json);
     }
 
-    // MODIFIES: this
-    // EFFECTS: closes writer
-    public void close() {
-        writer.close();
+    public void saveDashboard(Dashboard dashboard) {
+        List<Habit> allHabits = dashboard.getAllHabits();
+
+        for (Habit habit : allHabits) {
+            String name = habit.getTitle();
+            String destinationFile = destination + "/" + name + "/" + name + "_Details.json";
+            try {
+                writer = new PrintWriter(new File(destinationFile));
+                write(habit);
+                writer.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

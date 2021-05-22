@@ -2,7 +2,7 @@
   "title": "Exercise More",
   "purpose": "Look better, and feel better about myself",
   "isCompleted": false,
-  "stats": {
+  "habitStats": {
     "currentStreak": 4,
     "longestStreak": 10,
     "dateCreated": "5-21-2021",
@@ -10,7 +10,7 @@
     "numSetbacks": 3
   },
   "habitType": "MAKEABLE",
-  "gallery": {
+  "awardsGallery": {
     "felineGoodAwards": [
       {
         "dateReceived": "5-15-2021",

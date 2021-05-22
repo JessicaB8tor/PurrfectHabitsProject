@@ -1,8 +1,13 @@
 package model;
 
-import java.time.LocalDate;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 
-public class Habit {
+import java.time.LocalDate;
+import java.util.List;
+
+public class Habit implements Writable {
     public enum HabitType {
         MAKEABLE, BREAKABLE
     }
@@ -55,6 +60,61 @@ public class Habit {
 
     public Gallery getAwardsGallery() {
         return awardsGallery;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject mainObject = new JSONObject();
+        mainObject.put("title", title);
+        mainObject.put("purpose", purpose);
+        mainObject.put("isCompleted", isCompleted);
+        JSONObject statsObject = new JSONObject();
+        statsObject.put("currentStreak", habitStats.getCurrentStreak());
+        statsObject.put("longestStreak", habitStats.getLongestStreak());
+        statsObject.put("dateCreated", habitStats.getDateCreated().toString());
+        statsObject.put("numDaysSinceStarted", habitStats.getNumDaysSinceStarted());
+        statsObject.put("numSetbacks", habitStats.getNumSetbacks());
+        mainObject.put("habitStats", statsObject);
+        mainObject.put("habitType", habitType.toString());
+        JSONObject galleryObject = new JSONObject();
+        JSONArray felineGoodArray = new JSONArray();
+        JSONArray pawsomeAchievementArray = new JSONArray();
+        JSONArray allAwardsArray = new JSONArray();
+        JSONArray bestStreakArray = new JSONArray();
+        List<Award> feline = awardsGallery.getFelineGoodAwards();
+        List<Award> pawsome = awardsGallery.getPawsomeAchievementAwards();
+        List<Award> all = awardsGallery.getAllAwards();
+        List<Award> best = awardsGallery.getBestStreakAwards();
+        for (Award award : feline) {
+            JSONObject obj = new JSONObject();
+            obj.put("dateReceived", award.getDateReceived());
+            obj.put("awardType", award.getAwardType());
+            felineGoodArray.put(obj);
+        }
+        for (Award award : pawsome) {
+            JSONObject obj = new JSONObject();
+            obj.put("dateReceived", award.getDateReceived());
+            obj.put("awardType", award.getAwardType());
+            pawsomeAchievementArray.put(obj);
+        }
+        for (Award award : all) {
+            JSONObject obj = new JSONObject();
+            obj.put("dateReceived", award.getDateReceived());
+            obj.put("awardType", award.getAwardType());
+            allAwardsArray.put(obj);
+        }
+        for (Award award : best) {
+            JSONObject obj = new JSONObject();
+            obj.put("dateReceived", award.getDateReceived());
+            obj.put("awardType", award.getAwardType());
+            bestStreakArray.put(obj);
+        }
+        galleryObject.put("felineGoodAwards", felineGoodArray);
+        galleryObject.put("pawsomeAchievementAwards", pawsomeAchievementArray);
+        galleryObject.put("allAwards", allAwardsArray);
+        galleryObject.put("bestStreakAwards", bestStreakArray);
+        mainObject.put("awardsGallery", galleryObject);
+        return mainObject;
     }
 }
 
