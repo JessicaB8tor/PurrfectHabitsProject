@@ -23,22 +23,8 @@ import java.util.List;
 public class DashboardPage  {
     BorderPane borderPane;
     VBox leftVBox;
-    //Stage primaryStage;
 
     public DashboardPage(Stage primaryStage) throws Exception {
-       // primaryStage = new Stage();
-        //start(primaryStage);
-
-
-
-   // public static void main(String[] args) {
-    //    launch(args);
-   // }
-
-//    @Override
-//    public void start(Stage primaryStage) throws Exception {
-      //  primaryStage.setTitle("Dashboard");
-
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
         borderPane.setStyle("-fx-background-color: #FFCB3D");
@@ -77,6 +63,7 @@ public class DashboardPage  {
     }
 
     private void createBottomHBox() {
+        //TODO: Connect actual quote API stuff
         HBox bottomHBox = new HBox();
         bottomHBox.setStyle("-fx-background-color: #86D0F7");
         bottomHBox.setAlignment(Pos.CENTER);
@@ -90,6 +77,8 @@ public class DashboardPage  {
     }
 
     private void createLeftVBox() throws FileNotFoundException {
+        //TODO: Connect data that shows actual user's name instead of Jessica Bator each time
+        //TODO: Add profile picture feature beside name?
         leftVBox = new VBox();
         leftVBox.setAlignment(Pos.TOP_CENTER);
         leftVBox.setSpacing(60);
@@ -108,6 +97,7 @@ public class DashboardPage  {
     }
 
     private void buttonSetup() {
+        //TODO: Add functionality/listeners for buttons
         Button myHabits = new Button("MY HABITS");
         Button addHabit = new Button("ADD HABIT");
         Button deleteHabit = new Button("DELETE HABIT");
@@ -125,9 +115,8 @@ public class DashboardPage  {
     }
 
     private void createCenterGridPane() {
-       // Graph graph = new Graph(borderPane);
         //TODO: Put graph into seperate class
-        //TODO: Figure out some styling/CSS for graph
+        //TODO: Figure out some styling/CSS for graph (look less bad)
         //TODO: Connect real data/stats to graph
 
         GridPane centerGridPane = new GridPane();
@@ -162,10 +151,6 @@ public class DashboardPage  {
         series.getData().add(new XYChart.Data(3, 10));
         series.getData().add(new XYChart.Data(4, 5));
         series.getData().add(new XYChart.Data(5, 20));
-
-//        Node line = series.getNode().lookup(".chart-series-line");
-//        line.setStyle("-fx-fill: #FF0000");
-
         //Setting the data to Line chart
         linechart.getData().add(series);
 

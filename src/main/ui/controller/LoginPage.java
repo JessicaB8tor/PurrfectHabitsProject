@@ -19,17 +19,14 @@ import java.util.List;
 public class LoginPage {
     Stage primaryStage;
     DashboardPage dashboardPage;
+    NewAccountPage newAccountPage;
     VBox loginVbox;
     Button yes;
     Button no;
 
     public LoginPage() throws Exception {
         primaryStage = new Stage();
-       // start(primaryStage);
 
-
-//    @Override
-//    public void start(Stage primaryStage) throws Exception {
         loginVbox = new VBox();
         loginVbox.setAlignment(Pos.CENTER);
         loginVbox.setSpacing(30);
@@ -53,6 +50,7 @@ public class LoginPage {
     }
 
     public void buttonSetUp() {
+        //TODO: Split listener stuff into seperate class -> cleaner code & pass checkstyle
         yes = new Button("YES");
         no = new Button("NO");
         List<Button> buttons = new ArrayList<>();
@@ -67,14 +65,14 @@ public class LoginPage {
         yes.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //TODO: Open Account Page
+                newAccountPage = new NewAccountPage(primaryStage);
+                primaryStage.getScene().setRoot(newAccountPage.borderPane);
             }
         });
 
         no.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //TODO: Open Dashboard
                 try {
                     dashboardPage = new DashboardPage(primaryStage);
                     primaryStage.getScene().setRoot(dashboardPage.borderPane);
