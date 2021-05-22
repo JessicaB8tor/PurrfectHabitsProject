@@ -1,6 +1,5 @@
 package ui.controller;
 
-import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,13 +12,13 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 
-public class WelcomePage extends Application {
+public class WelcomePage {
     GridPane gridPane;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    public WelcomePage(Stage primaryStage) throws FileNotFoundException {
         gridPane = new GridPane();
         gridPane.setPrefSize(1000, 500);
         gridPane.setAlignment(Pos.CENTER);
