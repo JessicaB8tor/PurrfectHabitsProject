@@ -20,6 +20,13 @@ public class Gallery {
         bestStreakAwards = new ArrayList<Award>();
     }
 
+    public Gallery(List<Award> felineGoodAwards, List<Award> pawsomeAchievementAwards, List<Award> allAwards, List<Award> bestStreakAwards) {
+        this.felineGoodAwards = felineGoodAwards;
+        this.pawsomeAchievementAwards = pawsomeAchievementAwards;
+        this.allAwards = allAwards;
+        this.bestStreakAwards = bestStreakAwards;
+    }
+
     public List<Award> getFelineGoodAwards() {
         return felineGoodAwards;
     }

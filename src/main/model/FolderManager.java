@@ -39,7 +39,7 @@ public class FolderManager {
     }
 
     private void createGalleryFolder(String folderName) {
-        String path = destination + "\\" + folderName + "\\" + folderName + "-Gallery";
+        String path = destination + "\\" + folderName + "\\" + folderName + "_Awards";
         File folder = new File(path);
 
         if (!folder.exists()) {
@@ -54,7 +54,7 @@ public class FolderManager {
     }
 
     private void createJsonFile(String folderName) {
-        String path = destination + "\\" + folderName + "\\" + folderName + "-Data.json";
+        String path = destination + "\\" + folderName + "\\" + folderName + "_Details.json";
 
         try {
             File file = new File(path);

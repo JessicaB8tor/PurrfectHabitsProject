@@ -24,6 +24,15 @@ public class Habit {
         awardsGallery = new Gallery();
     }
 
+    public Habit(String title, String purpose, boolean isCompleted, Stats habitStats, HabitType habitType, Gallery awardsGallery) {
+        this.title = title;
+        this.purpose = purpose;
+        this.isCompleted = isCompleted;
+        this.habitStats = habitStats;
+        this.habitType = habitType;
+        this.awardsGallery = awardsGallery;
+    }
+
     public String getTitle() {
         return title;
     }

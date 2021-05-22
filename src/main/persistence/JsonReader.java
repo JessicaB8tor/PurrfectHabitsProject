@@ -1,17 +1,16 @@
 package persistence;
 
-import model.Dashboard;
-import model.MatchDetails;
-import model.MatchStats;
-import model.TennisMatch;
-import model.TennisMatchJournal;
+import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 // Represents a reader that reads journal from JSON data stored in file
@@ -19,7 +18,7 @@ import java.util.stream.Stream;
 //       based off the WorkRoom application that was given to us on GitHub.
 //       URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class JsonReader {
-    private String source; // this should be given the path to the habits folder
+    private String source; // should be "./data/habits";
 
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
@@ -29,16 +28,20 @@ public class JsonReader {
     // EFFECTS: reads journal from file and returns it;
     //          throws IOException if an error occurs when reading data from file
     public Dashboard read() throws IOException {
-        // loop through all the habit folders in the habits folder
-        // for each habit folder, go to the
+        File habitFolder = new File(source);
+        File[] habits = habitFolder.listFiles();
+        Dashboard dashboard = new Dashboard();
 
+        for (File habit : habits) {
+            String habitName = habit.getName();
+            String jsonFilePath = source + "/" + habitName + "/" + habitName + "_Details.json";
+            String jsonData = readFile(jsonFilePath);
+            JSONObject jsonObject = new JSONObject(jsonData);
+            Habit parsedHabit = parseHabit(jsonObject);
+            dashboard.addHabitJson(parsedHabit);
+        }
 
-
-
-
-        String jsonData = readFile(source);
-        JSONObject jsonObject = new JSONObject(jsonData);
-        return parseDashboard(jsonObject);
+        return dashboard;
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -52,54 +55,53 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses journal from JSON object and returns it
-    private Dashboard parseDashboard(JSONObject jsonObject) {
-        Dashboard dashboard = new Dashboard();
-        addHabits(dashboard, jsonObject);
-        return dashboard;
-    }
+    // TODO: refactor this so it's not so long
+    // EFFECTS: parses habit from JSON object and returns it
+    private Habit parseHabit(JSONObject jsonObject) {
+        String title = jsonObject.getString("title");
+        String purpose = jsonObject.getString("purpose");
+        boolean isCompleted = jsonObject.getBoolean("isCompleted");
 
-    // MODIFIES: dashboard
-    // EFFECTS: parses habits from JSON object and adds them to dashboard
-    private void addHabits(Dashboard dashboard, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("matches");
+        int currentStreak = jsonObject.getJSONObject("stats").getInt("currentStreak");
+        int longestStreak = jsonObject.getJSONObject("stats").getInt("longestStreak");
+        LocalDate date = LocalDate.parse(jsonObject.getJSONObject("stats").getString("dateCreated"));
+        int numDaysSinceStarted = jsonObject.getJSONObject("stats").getInt("numDaysSinceStarted");
+        int numSetBacks = jsonObject.getJSONObject("stats").getInt("numSetBacks");
+        Stats stats = new Stats(currentStreak, longestStreak, date, numDaysSinceStarted, numSetBacks);
 
-        for (Object json : jsonArray) {
-            JSONObject nextMatch = (JSONObject) json;
-            addHabit(dashboard, nextMatch);
+        Habit.HabitType habitType = Habit.HabitType.valueOf(jsonObject.getString("habitType"));
+
+        ArrayList<Award> felineGoodAwards = new ArrayList<Award>();
+        ArrayList<Award> pawsomeAchievementAwards = new ArrayList<Award>();
+        ArrayList<Award> allAwards = new ArrayList<Award>();
+        ArrayList<Award> bestStreakAwards = new ArrayList<Award>();
+        JSONArray felineArray = jsonObject.getJSONObject("gallery").getJSONArray("felineGoodAwards");
+        JSONArray pawsomeArray = jsonObject.getJSONObject("gallery").getJSONArray("pawsomeAchievementAwards");
+        JSONArray allAwardsArray = jsonObject.getJSONObject("gallery").getJSONArray("allAwards");
+        JSONArray bestStreakArray = jsonObject.getJSONObject("gallery").getJSONArray("bestStreakAwards");
+        for (Object object : felineArray) {
+            JSONObject obj = (JSONObject) object;
+            Award award = new Award(LocalDate.parse(obj.getString("dateReceived")), Award.AwardType.valueOf(obj.getString("awardType")));
+            felineGoodAwards.add(award);
         }
-    }
+        for (Object object : pawsomeArray) {
+            JSONObject obj = (JSONObject) object;
+            Award award = new Award(LocalDate.parse(obj.getString("dateReceived")), Award.AwardType.valueOf(obj.getString("awardType")));
+            pawsomeAchievementAwards.add(award);
+        }
+        for (Object object : allAwardsArray) {
+            JSONObject obj = (JSONObject) object;
+            Award award = new Award(LocalDate.parse(obj.getString("dateReceived")), Award.AwardType.valueOf(obj.getString("awardType")));
+            allAwards.add(award);
+        }
+        for (Object object : bestStreakArray) {
+            JSONObject obj = (JSONObject) object;
+            Award award = new Award(LocalDate.parse(obj.getString("dateReceived")), Award.AwardType.valueOf(obj.getString("awardType")));
+            bestStreakAwards.add(award);
+        }
+        Gallery gallery = new Gallery(felineGoodAwards, pawsomeAchievementAwards, allAwards, bestStreakAwards);
 
-    // MODIFIES: journal
-    // EFFECTS: parses habit from JSON object and adds it to dashboard
-    private void addHabit(Dashboard dashboard, JSONObject jsonObject) {
-        MatchDetails matchDetails = getMatchDetails(jsonObject);
-        MatchStats matchStats = getMatchStats(jsonObject);
-        TennisMatch tennisMatch = new TennisMatch(matchDetails, matchStats);
-
-        journal.addMatch(tennisMatch);
-    }
-
-    // EFFECTS: gets the match details from JSON object
-    private MatchDetails getMatchDetails(JSONObject jsonObject) {
-        String opponent = jsonObject.getString("opponent");
-        boolean isWon = jsonObject.getBoolean("isWon");
-        String surface = jsonObject.getString("surface");
-        int duration = jsonObject.getInt("duration");
-        String date = jsonObject.getString("date");
-
-        return new MatchDetails(opponent, isWon, surface, duration, date);
-    }
-
-    // EFFECTS: gets the match stats from JSON object
-    private MatchStats getMatchStats(JSONObject jsonObject) {
-        String score = jsonObject.getString("score");
-        int aces = jsonObject.getInt("aces");
-        int doubleFaults = jsonObject.getInt("doubleFaults");
-        int winners = jsonObject.getInt("winners");
-        int unforcedErrors = jsonObject.getInt("unforcedErrors");
-
-        return new MatchStats(score, aces, doubleFaults, winners, unforcedErrors);
+        return new Habit(title, purpose, isCompleted, stats, habitType, gallery);
     }
 }
 

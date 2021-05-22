@@ -17,6 +17,14 @@ public class Stats {
         numSetbacks = 0;
     }
 
+    public Stats(int currentStreak, int longestStreak, LocalDate dateCreated, int numDaysSinceStarted, int numSetbacks) {
+        this.currentStreak = currentStreak;
+        this.longestStreak = longestStreak;
+        this.dateCreated = dateCreated;
+        this.numDaysSinceStarted = numDaysSinceStarted;
+        this.numSetbacks = numSetbacks;
+    }
+
     public int getCurrentStreak() {
         return currentStreak;
     }

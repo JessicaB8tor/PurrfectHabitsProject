@@ -33,6 +33,18 @@ public class Dashboard {
     }
 
     // add new habit to proper habits list, then add it to allHabits
+    public void addHabitJson(Habit habit) {
+        if (habit.getHabitType() == MAKEABLE && !habitsToMake.contains(habit)) {
+            habitsToMake.add(habit);
+        } else if (habit.getHabitType() == BREAKABLE && !habitsToBreak.contains(habit)) {
+            habitsToBreak.add(habit);
+        }
+
+        if (!allHabits.contains(habit)) {
+            allHabits.add(habit);
+        }
+    }
+
     public void addHabit(Habit habit) throws HabitAlreadyExistsException {
         if (habit.getHabitType() == MAKEABLE && !habitsToMake.contains(habit)) {
             habitsToMake.add(habit);
