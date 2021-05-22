@@ -46,7 +46,7 @@ public class DashboardPage  {
         topHBox.setAlignment(Pos.TOP_CENTER);
 
         //Image Stuff
-        FileInputStream stream = new FileInputStream("data/catLogo.png");
+        FileInputStream stream = new FileInputStream("data/misc/catLogo.png");
         //FileInputStream stream = new FileInputStream("https://cdn2.thecatapi.com/images/hi.jpg");
         Image image = new Image(stream);
         ImageView logo = new ImageView(image);
