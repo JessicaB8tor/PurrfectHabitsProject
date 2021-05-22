@@ -1,34 +1,61 @@
 package ui.controller;
 
+import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
-public class NewAccountPage {
+public class CreateAccountPage extends Application {
     BorderPane borderPane;
 
-    public NewAccountPage(Stage primaryStage) {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
+
+
+   // public CreateAccountPage(Stage primaryStage) {
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
         borderPane.setStyle("-fx-background-color: #FFCB3D");
 
-        createTopHBox();
+        createLeftVBox();
+       // createTopHBox();
         createCenterGridPane();
-        createBottomVBox();
+       // createBottomVBox();
 
         Scene root = new Scene(borderPane);
 
         primaryStage.setScene(root);
         primaryStage.show();
+    }
+
+    public void  createLeftVBox() throws FileNotFoundException {
+        VBox leftVBox = new VBox();
+        leftVBox.setAlignment(Pos.CENTER);
+
+        //Image Stuff
+        FileInputStream stream = new FileInputStream("data/misc/createAccCat.png");
+        Image image = new Image(stream);
+        ImageView logo = new ImageView(image);
+        logo.setFitWidth(300);
+        logo.setPreserveRatio(true);
+
+        VBox.setMargin(logo, new Insets(100, 0, 0, 0));
+        leftVBox.getChildren().add(logo);
+        borderPane.setLeft(logo);
     }
 
     public void createTopHBox() {

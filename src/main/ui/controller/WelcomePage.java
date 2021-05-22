@@ -1,6 +1,7 @@
 package ui.controller;
 
 import javafx.application.Application;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -46,6 +47,10 @@ public class WelcomePage extends Application {
         gridPane.add(welcomeTo, 1, 0);
         gridPane.add(purrfectHabits, 1, 1);
         gridPane.add(button, 1, 2);
+
+        GridPane.setHalignment(welcomeTo, HPos.CENTER);
+        GridPane.setHalignment(purrfectHabits, HPos.CENTER);
+        GridPane.setHalignment(button, HPos.CENTER);
 
 
         Scene root = new Scene(gridPane);
