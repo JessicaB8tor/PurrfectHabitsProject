@@ -112,7 +112,7 @@ public class HabitsApp implements EventHandler<ActionEvent> {
 
             if (!password.getText().equals(confirmPassword.getText())) {
                 AlertBox.display("PurrfectHabits", "Passwords do not match.");
-            } else {
+            } else if (!password.getText().equals("")) {
                 accountWriter = new JsonWriter(accountDirectory);
                 accountWriter.saveAccountDetails(name.getText(), email.getText(), password.getText());
                 AlertBox.display("PurrfectHabits", "Account was successfully created. Please log in.");
@@ -137,7 +137,12 @@ public class HabitsApp implements EventHandler<ActionEvent> {
                     rememberMeWriter = new JsonWriter(signInDirectory);
                     rememberMeWriter.setRememberMeTrue();
                 }
-                // switch scenes to dashboard page
+
+                try {
+                    dashboardPage = new DashboardPage(primaryStage, this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } else {
                 AlertBox.display("PurrfectHabits", "Email or password is incorrect.");
             }
