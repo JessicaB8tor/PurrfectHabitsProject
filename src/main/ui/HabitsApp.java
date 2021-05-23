@@ -8,10 +8,7 @@ import javafx.stage.Stage;
 import model.Dashboard;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import ui.controller.AlertBox;
-import ui.controller.DashboardPage;
-import ui.controller.LoginPage;
-import ui.controller.WelcomePage;
+import ui.controller.*;
 
 import java.io.FileNotFoundException;
 
@@ -32,9 +29,11 @@ public class HabitsApp implements EventHandler<ActionEvent> {
     private WelcomePage welcomePage;
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
-    private boolean isInitialLaunch;
+    private AboutUsPage aboutUsPage;
+    private Stage primaryStage;
 
     public HabitsApp(Stage primaryStage) {
+        this.primaryStage = primaryStage;
         dashboard = new Dashboard();
         jsonReader = new JsonReader(habitsFolderDirectory);
         jsonWriter = new JsonWriter(habitsFolderDirectory);
@@ -68,27 +67,36 @@ public class HabitsApp implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
         welcomePageListener(event);
+        aboutUsPageListener(event);
         loginPageListener(event);
     }
 
     private void welcomePageListener(ActionEvent event) {
-        if (event.getSource() == welcomePage.getGetStartedButton()) {
-            // switch scenes to about us page
+        if (welcomePage != null && event.getSource() == welcomePage.getGetStartedButton()) {
+            try {
+                aboutUsPage = new AboutUsPage(primaryStage, this);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
+    private void aboutUsPageListener(ActionEvent event) {
+        if (aboutUsPage != null && event.getSource() == aboutUsPage.)
+    }
+
     private void loginPageListener(ActionEvent event) {
-        if (event.getSource() == loginPage.getSignInButton()) {
+        if (loginPage != null && event.getSource() == loginPage.getSignInButton()) {
             CheckBox rememberMe = loginPage.getRememberMe();
             TextField email = loginPage.getEmail();
             TextField password = loginPage.getPassword();
 
-            if (rememberMe.isSelected()) {
-                rememberMeWriter.setRememberMeTrue();
-            }
-
             accountReader = new JsonReader(accountDirectory);
-            if (email.getText() == accountReader.readEmail() && password.getText() == accountReader.readPassword()) {
+            if (email.getText().equals(accountReader.readEmail()) && password.getText().equals(accountReader.readPassword())) {
+                if (rememberMe.isSelected()) {
+                    rememberMeWriter = new JsonWriter(signInDirectory);
+                    rememberMeWriter.setRememberMeTrue();
+                }
                 // switch scenes to dashboard page
             } else {
                 AlertBox.display("PurrfectHabits", "Email or password is incorrect.");

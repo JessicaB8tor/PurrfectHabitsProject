@@ -49,6 +49,7 @@ public class LoginPage {
         signInButton = new Button("Sign In");
         signInButton.setFont(new Font("Dosis Bold", 20));
         signInButton.setStyle("-fx-background-color: #FFCB3D");
+        signInButton.setOnAction(eventHandler);
 
         //CheckBox Stuff
         rememberMe = new CheckBox("Remember Me?");

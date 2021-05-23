@@ -1,6 +1,7 @@
 package ui.controller;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public class AboutUsPage {
     BorderPane borderPane;
+    Button continueButton;
 
 //    @Override
 //    public void start(Stage primaryStage) throws Exception {
@@ -26,7 +28,7 @@ public class AboutUsPage {
 ////    }
 //
 //
-    public AboutUsPage(Stage primaryStage) throws FileNotFoundException {
+    public AboutUsPage(Stage primaryStage, EventHandler eventHandler) throws FileNotFoundException {
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
         borderPane.setStyle("-fx-background-color: #FFCB3D");
@@ -92,12 +94,16 @@ public class AboutUsPage {
 
 
         //Button Stuff
-        Button button = new Button("Continue");
-        button.setFont(new Font("Dosis Bold", 20));
-        button.setStyle("-fx-background-color: #86D0F7");
+        continueButton = new Button("Continue");
+        continueButton.setFont(new Font("Dosis Bold", 20));
+        continueButton.setStyle("-fx-background-color: #86D0F7");
 
 
-        centerVBox.getChildren().addAll(whatIs, p1, p2, p3, p4, p5, p6, p7, p8, p10, p11, p12, button);
+        centerVBox.getChildren().addAll(whatIs, p1, p2, p3, p4, p5, p6, p7, p8, p10, p11, p12, continueButton);
         borderPane.setCenter(centerVBox);
+    }
+
+    public Button getContinueButton() {
+        return continueButton;
     }
 }
