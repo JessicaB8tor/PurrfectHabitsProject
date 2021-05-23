@@ -140,7 +140,7 @@ public class DashboardPage  {
         HBox hBox = new HBox(10);
         hBox.setPadding(new Insets(10));
 
-        Button add = new Button("Add");
+        Button add = new Button("Add");;
         Button remove = new Button("Remove");
         List<Button> buttons = Arrays.asList(add, remove);
         for (Button b: buttons) {
@@ -175,7 +175,7 @@ public class DashboardPage  {
                     FileInputStream inputStream = new FileInputStream("data/habits/" + habit.getTitle() + "/" + habit.getTitle() + "_Gallery/" + lastAwardReceivedDate + extension);
                     ImageView imageView = new ImageView(new Image(inputStream));
                     Button button = new Button(habit.getTitle(), imageView);
-                    gridPane.getChildren().add(button);
+                    gridPane.add(button, 0, 0);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -186,6 +186,7 @@ public class DashboardPage  {
     }
 
     public void createCenterBotPane(Dashboard dashboard) {
+
 
     }
 }

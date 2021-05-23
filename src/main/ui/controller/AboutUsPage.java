@@ -94,9 +94,6 @@ public class AboutUsPage  {
         }
 
 
-
-
-
         //Button Stuff
         continueButton = new Button("Continue");
         continueButton.setFont(new Font("Dosis Bold", 20));
