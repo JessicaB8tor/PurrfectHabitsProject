@@ -6,12 +6,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -20,19 +17,22 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
-public class AboutUsPage extends Application {
+public class AboutUsPage {
     BorderPane borderPane;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+//    @Override
+//    public void start(Stage primaryStage) throws Exception {
+//
+////    }
+//
+//
+    public AboutUsPage(Stage primaryStage) throws FileNotFoundException {
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
-        borderPane.setStyle("-fx-background-color: #86D0F7");
+        borderPane.setStyle("-fx-background-color: #FFCB3D");
 
         createLeftVBox();
-        // createTopHBox();
         createCenterGridPane();
-        // createBottomVBox();
 
         Scene root = new Scene(borderPane);
 
@@ -58,60 +58,46 @@ public class AboutUsPage extends Application {
     }
 
     public void createCenterGridPane() {
-        //TODO: Make method smaller for checkstyle & readability
         VBox centerVBox = new VBox();
-        centerVBox.setStyle("-fx-background-color: #FFCB3D");
         centerVBox.setAlignment(Pos.CENTER);
-      //  centerVBox.setVgap(15);
-      //  centerVBox.setHgap(20);
-
-        GridPane gridPane = new GridPane();
-        gridPane.setAlignment(Pos.CENTER);
-
+        centerVBox.setStyle("-fx-background-color: #FFCB3D");
+        centerVBox.setSpacing(10);
+        centerVBox.setPadding(new Insets(0, 0, 50, 0));
 
         //Name Label Stuff
-        Label createAcc = new Label("Create Your Account");
-        createAcc.setFont(new Font("Century Gothic Bold", 50));
+        Label whatIs = new Label("What is Purrfect Habits?");
+        whatIs.setFont(new Font("Century Gothic Bold", 50));
 
 
         //Label Stuff
-        Label name = new Label("Name");
-        Label emailAddress = new Label("Email Address");
-        Label password = new Label("Password");
-        Label confirmPassword = new Label("Confirm Password");
-        List<Label> labels = Arrays.asList(name, emailAddress, password, confirmPassword);
-        for (Label label: labels) {
-            label.setFont(new Font("Dosis Bold", 20));
+        Label p1 = new Label("Purrfect Habits is a habit tracker app.");
+        Label p2 = new Label("but not just any habit tracker app");
+        Label p3 = new Label("It rewards you with cats!");
+        Label p4 = new Label("How Paw-some is that?");
+        Label p5 = new Label("For each day a healthy habit is created");
+        Label p6 = new Label("or an unhealthy one is broken");
+        Label p7 = new Label("a new cat photo (or gif) is added");
+        Label p8 = new Label("to your gallery");
+        Label p10 = new Label("But watch out!");
+        Label p11 = new Label("If you miss a day all you cats will be lost");
+        Label p12 = new Label("Will you take on the challenge?");
+        List<Label> labels = Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p12, p10, p11);
+
+        for (Label l: labels) {
+            l.setFont(new Font("Dosis Bold", 20));
         }
 
-        //TextField Stuff
-        TextField nameField = new TextField();
-        nameField.setPromptText("ex. Jessica");
-        nameField.setFocusTraversable(false);
-        TextField emailField = new TextField();
-        emailField.setPromptText("ex. meow@gmail.com");
-        emailField.setFocusTraversable(false);
-        TextField passwordField = new TextField();
-        TextField confirmPasswordField = new TextField();
+
+
+
 
         //Button Stuff
-        Button button = new Button("Create");
+        Button button = new Button("Continue");
         button.setFont(new Font("Dosis Bold", 20));
         button.setStyle("-fx-background-color: #86D0F7");
 
-        gridPane.add(name, 0, 0);
-        gridPane.add(nameField, 1, 0);
-        gridPane.add(emailAddress, 0, 1);
-        gridPane.add(emailField, 1, 1);
-        gridPane.add(password, 0, 2);
-        gridPane.add(passwordField, 1, 2);
-        gridPane.add(confirmPassword, 0, 3);
-        gridPane.add(confirmPasswordField, 1, 3);
-        gridPane.add(button, 0, 4, 2, 1);
 
-        centerVBox.getChildren().addAll(createAcc, gridPane);
+        centerVBox.getChildren().addAll(whatIs, p1, p2, p3, p4, p5, p6, p7, p8, p10, p11, p12, button);
         borderPane.setCenter(centerVBox);
     }
 }
-
-
