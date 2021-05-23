@@ -45,35 +45,37 @@ public class CreateAccountPage extends Application {
     public void  createLeftVBox() throws FileNotFoundException {
         VBox leftVBox = new VBox();
         leftVBox.setAlignment(Pos.CENTER);
+        leftVBox.setStyle("-fx-background-color: #FFCB3D");
 
         //Image Stuff
         FileInputStream stream = new FileInputStream("data/misc/createAccCat.png");
         Image image = new Image(stream);
         ImageView logo = new ImageView(image);
-        logo.setFitWidth(300);
+        logo.setFitWidth(400);
         logo.setPreserveRatio(true);
 
-        VBox.setMargin(logo, new Insets(100, 0, 0, 0));
+        VBox.setMargin(logo, new Insets(100, 0, 100, 0));
         leftVBox.getChildren().add(logo);
         borderPane.setLeft(logo);
     }
 
-    public void createTopHBox() {
-        HBox topHBox = new HBox();
-        topHBox.setAlignment(Pos.CENTER);
-
-        //Label Stuff
-        Label label = new Label("Create an Account");
-        label.setFont(new Font("Showcard Gothic", 24));
-
-        topHBox.getChildren().addAll(label);
-        borderPane.setTop(topHBox);
-    }
-
     public void createCenterGridPane() {
         //TODO: Make method smaller for checkstyle & readability
+        VBox centerVBox = new VBox();
+        centerVBox.setAlignment(Pos.CENTER);
+        centerVBox.setStyle("-fx-background-color: #86D0F7");
+        centerVBox.setSpacing(100);
+
         GridPane gridPane = new GridPane();
+        //gridPane.setStyle("-fx-background-color: #86D0F7");
+
         gridPane.setAlignment(Pos.CENTER);
+        gridPane.setVgap(15);
+        gridPane.setHgap(20);
+
+        //Name Label
+        Label createAcc = new Label("Create Your Account");
+        createAcc.setFont(new Font("Century Gothic Bold", 30));
 
 
         //Label Stuff
@@ -86,7 +88,6 @@ public class CreateAccountPage extends Application {
             label.setFont(new Font("Dosis Bold", 20));
         }
 
-
         //TextField Stuff
         TextField nameField = new TextField();
         nameField.setPromptText("ex. Jessica");
@@ -94,6 +95,11 @@ public class CreateAccountPage extends Application {
         emailField.setPromptText("ex. meow@gmail.com");
         TextField passwordField = new TextField();
         TextField confirmPasswordField = new TextField();
+
+        //Button Stuff
+        Button button = new Button("Create");
+        button.setFont(new Font("Dosis Bold", 20));
+        button.setStyle("-fx-background-color: #FFCB3D");
 
         gridPane.add(name, 0, 0);
         gridPane.add(nameField, 1, 0);
@@ -103,22 +109,9 @@ public class CreateAccountPage extends Application {
         gridPane.add(passwordField, 1, 2);
         gridPane.add(confirmPassword, 0, 3);
         gridPane.add(confirmPasswordField, 1, 3);
+        gridPane.add(button, 0, 4, 2, 1);
 
-        borderPane.setCenter(gridPane);
-    }
-
-    public void createBottomVBox() {
-        VBox bottomVBox = new VBox();
-        bottomVBox.setAlignment(Pos.CENTER);
-
-
-        //Button Stuff
-        Button button = new Button("Submit");
-        button.setFont(new Font("Dosis Bold", 20));
-        button.setStyle("-fx-background-color: #86D0F7");
-        VBox.setMargin(button, new Insets(10, 10, 80, 10));
-
-        bottomVBox.getChildren().add(button);
-        borderPane.setBottom(bottomVBox);
+        centerVBox.getChildren().addAll(createAcc, gridPane);
+        borderPane.setCenter(centerVBox);
     }
 }
