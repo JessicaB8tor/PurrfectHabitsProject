@@ -64,7 +64,8 @@ public class CreateAccountPage extends Application {
         VBox centerVBox = new VBox();
         centerVBox.setAlignment(Pos.CENTER);
         centerVBox.setStyle("-fx-background-color: #86D0F7");
-        centerVBox.setSpacing(100);
+        centerVBox.setSpacing(50);
+        centerVBox.setPadding(new Insets(0, 0, 50, 0));
 
         GridPane gridPane = new GridPane();
         //gridPane.setStyle("-fx-background-color: #86D0F7");
@@ -75,7 +76,7 @@ public class CreateAccountPage extends Application {
 
         //Name Label
         Label createAcc = new Label("Create Your Account");
-        createAcc.setFont(new Font("Century Gothic Bold", 30));
+        createAcc.setFont(new Font("Century Gothic Bold", 50));
 
 
         //Label Stuff
@@ -91,8 +92,10 @@ public class CreateAccountPage extends Application {
         //TextField Stuff
         TextField nameField = new TextField();
         nameField.setPromptText("ex. Jessica");
+        nameField.setFocusTraversable(false);
         TextField emailField = new TextField();
         emailField.setPromptText("ex. meow@gmail.com");
+        emailField.setFocusTraversable(false);
         TextField passwordField = new TextField();
         TextField confirmPasswordField = new TextField();
 
