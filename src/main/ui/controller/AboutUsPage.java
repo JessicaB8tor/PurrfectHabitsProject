@@ -9,7 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -18,23 +20,19 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
-public class CreateAccountPage extends Application {
+public class AboutUsPage extends Application {
     BorderPane borderPane;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-
-
-   // public CreateAccountPage(Stage primaryStage) {
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
-        borderPane.setStyle("-fx-background-color: #FFCB3D");
+        borderPane.setStyle("-fx-background-color: #86D0F7");
 
         createLeftVBox();
-       // createTopHBox();
+        // createTopHBox();
         createCenterGridPane();
-       // createBottomVBox();
+        // createBottomVBox();
 
         Scene root = new Scene(borderPane);
 
@@ -45,10 +43,10 @@ public class CreateAccountPage extends Application {
     public void  createLeftVBox() throws FileNotFoundException {
         VBox leftVBox = new VBox();
         leftVBox.setAlignment(Pos.CENTER);
-        leftVBox.setStyle("-fx-background-color: #FFCB3D");
+        leftVBox.setStyle("-fx-background-color: #86D0F7");
 
         //Image Stuff
-        FileInputStream stream = new FileInputStream("data/misc/createAccCat.png");
+        FileInputStream stream = new FileInputStream("data/misc/cat3.png");
         Image image = new Image(stream);
         ImageView logo = new ImageView(image);
         logo.setFitWidth(400);
@@ -61,12 +59,19 @@ public class CreateAccountPage extends Application {
 
     public void createCenterGridPane() {
         //TODO: Make method smaller for checkstyle & readability
-        GridPane gridPane = new GridPane();
-        gridPane.setStyle("-fx-background-color: #86D0F7");
+        VBox centerVBox = new VBox();
+        centerVBox.setStyle("-fx-background-color: #FFCB3D");
+        centerVBox.setAlignment(Pos.CENTER);
+      //  centerVBox.setVgap(15);
+      //  centerVBox.setHgap(20);
 
+        GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
-        gridPane.setVgap(15);
-        gridPane.setHgap(20);
+
+
+        //Name Label Stuff
+        Label createAcc = new Label("Create Your Account");
+
 
         //Label Stuff
         Label name = new Label("Name");
@@ -89,7 +94,7 @@ public class CreateAccountPage extends Application {
         //Button Stuff
         Button button = new Button("Create");
         button.setFont(new Font("Dosis Bold", 20));
-        button.setStyle("-fx-background-color: #FFCB3D");
+        button.setStyle("-fx-background-color: #86D0F7");
 
         gridPane.add(name, 0, 0);
         gridPane.add(nameField, 1, 0);
@@ -101,6 +106,10 @@ public class CreateAccountPage extends Application {
         gridPane.add(confirmPasswordField, 1, 3);
         gridPane.add(button, 0, 4, 2, 1);
 
+        centerVBox.getChildren().addAll(gridPane);
+
         borderPane.setCenter(gridPane);
     }
 }
+
+
