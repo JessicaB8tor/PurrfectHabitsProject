@@ -67,7 +67,7 @@ public class HabitsApp implements EventHandler<ActionEvent> {
                 }
             } else {
                 try {
-                    dashboardPage = new DashboardPage(primaryStage, this);
+                    dashboardPage = new DashboardPage(primaryStage, this, dashboard);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -139,7 +139,7 @@ public class HabitsApp implements EventHandler<ActionEvent> {
                 }
 
                 try {
-                    dashboardPage = new DashboardPage(primaryStage, this);
+                    dashboardPage = new DashboardPage(primaryStage, this, dashboard);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

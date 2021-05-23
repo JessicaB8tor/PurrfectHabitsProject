@@ -17,11 +17,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import model.Quote;
-import model.QuoteOfTheDay;
+import model.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,12 +42,12 @@ public class DashboardPage  {
     private Button logoutButton;
     private Button leaderboardButton;
 
-    public DashboardPage(Stage primaryStage, EventHandler eventHandler) throws Exception {
+    public DashboardPage(Stage primaryStage, EventHandler eventHandler, Dashboard dashboard) throws Exception {
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
         createLeftPane();
         createTopPane();
-        createCenterPane();
+        createCenterPane(dashboard);
         Scene scene = new Scene(borderPane);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -126,12 +126,12 @@ public class DashboardPage  {
         topPane.getChildren().add(sayingLabel);
     }
 
-    public void createCenterPane() {
+    public void createCenterPane(Dashboard dashboard) {
         centerBorderPane = new BorderPane();
 
         createCenterTopPane();
-        createCenterCenterPane();
-        createCenterBotPane();
+        createCenterCenterPane(dashboard);
+        createCenterBotPane(dashboard);
 
         borderPane.setCenter(centerBorderPane);
     }
@@ -152,13 +152,40 @@ public class DashboardPage  {
         centerBorderPane.setTop(hBox);
     }
 
-    public void createCenterCenterPane() {
+    public void createCenterCenterPane(Dashboard dashboard) {
         GridPane gridPane = new GridPane();
 
+        for (Habit habit : dashboard.getAllHabits()) {
+            List<Award> allAwards = habit.getAwardsGallery().getAllAwards();
 
+            if (allAwards.size() == 0) {
+                try {
+                    FileInputStream inputStream = new FileInputStream("data/misc/catLogo.png");
+                    ImageView imageView = new ImageView(new Image(inputStream));
+                    Button button = new Button(habit.getTitle(), imageView);
+                    gridPane.getChildren().add(button);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Award lastAwardReceived = allAwards.get(allAwards.size() - 1);
+                String lastAwardReceivedDate = lastAwardReceived.getDateReceived().toString();
+                String extension = (lastAwardReceived.getAwardType() == Award.AwardType.PAWSOME_ACHIEVEMENT) ? ".gif" : ".png";
+                try {
+                    FileInputStream inputStream = new FileInputStream("data/habits/" + habit.getTitle() + "/" + habit.getTitle() + "_Gallery/" + lastAwardReceivedDate + extension);
+                    ImageView imageView = new ImageView(new Image(inputStream));
+                    Button button = new Button(habit.getTitle(), imageView);
+                    gridPane.getChildren().add(button);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        centerBorderPane.setCenter(gridPane);
     }
 
-    public void createCenterBotPane() {
+    public void createCenterBotPane(Dashboard dashboard) {
 
     }
 }
