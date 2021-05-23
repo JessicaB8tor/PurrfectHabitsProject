@@ -19,7 +19,7 @@ import model.Dashboard;
 import java.util.Arrays;
 import java.util.List;
 
-public class AddHabitPage extends Application {
+public class AddHabitPage {
     private static final String yellow = "-fx-background-color: #FFCB3D";
     private static final String yellowHex = "FFCB3D";
     private static final String blue = "-fx-background-color: #86D0F7";
@@ -31,13 +31,14 @@ public class AddHabitPage extends Application {
     GridPane middleGridPane;
     GridPane bottomBottomGridPane;
     Button button;
+    RadioButton makeHabit;
+    RadioButton breakHabit;
+    TextField nameField;
+    TextField motivationField;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    public AddHabitPage(EventHandler eventHandler) {
         Stage addStage = new Stage();
 
-
-        //public AddPage(EventHandler eventHandler) {
         vBox = new VBox(10);
         vBox.setPrefSize(1000, 500);
         vBox.setPadding(new Insets(20));
@@ -45,11 +46,11 @@ public class AddHabitPage extends Application {
         vBox.setStyle(blue);
 
         createTopStackPane();
-        createFirstGridPane();
-        createMiddleGridPane();
+        createFirstGridPane(eventHandler);
+        createMiddleGridPane(eventHandler);
         createBottomStackPane();
         createSecondGridPane();
-        createBottomBottomGridPane();
+        createBottomBottomGridPane(eventHandler);
 
         vBox.getChildren().addAll(topStackPane, topGridPane, middleGridPane,bottomStackPane, bottomGridPane, bottomBottomGridPane);
 
@@ -69,35 +70,35 @@ public class AddHabitPage extends Application {
         topStackPane.getChildren().addAll(rectangle, prompt);
     }
 
-    public void createFirstGridPane() {
+    public void createFirstGridPane(EventHandler eventHandler) {
         topGridPane = new GridPane();
         topGridPane.setAlignment(Pos.CENTER);
 
-        RadioButton makeHabit = new RadioButton("Make");
-        RadioButton breakHabit = new RadioButton("Break");
+        makeHabit = new RadioButton("Make");
+        breakHabit = new RadioButton("Break");
         makeHabit.setFont(new Font("Dosis Bold", 20));
         breakHabit.setFont(new Font("Dosis Bold", 20));
         ToggleGroup toggleGroup = new ToggleGroup();
         makeHabit.setToggleGroup(toggleGroup);
         breakHabit.setToggleGroup(toggleGroup);
-        // makeHabit.setOnAction(eventHandler);
-
+        makeHabit.setOnAction(eventHandler);
+        breakHabit.setOnAction(eventHandler);
 
         topGridPane.add(makeHabit, 1, 0);
         topGridPane.add(breakHabit, 1, 1);
     }
 
-    public void createMiddleGridPane() {
+    public void createMiddleGridPane(EventHandler eventHandler) {
         middleGridPane = new GridPane();
         middleGridPane.setAlignment(Pos.CENTER);
 
-        TextField textField = new TextField();
-        textField.setPromptText("Name of Habit");
-        textField.setFocusTraversable(false);
-        textField.setMinSize(500, 50);
+        nameField = new TextField();
+        nameField.setOnAction(eventHandler);
+        nameField.setPromptText("Name of Habit");
+        nameField.setFocusTraversable(false);
+        nameField.setMinSize(500, 50);
 
-        middleGridPane.add(textField, 0, 0);
-
+        middleGridPane.add(nameField, 0, 0);
     }
 
     public void createBottomStackPane() {
@@ -115,26 +116,42 @@ public class AddHabitPage extends Application {
         bottomGridPane = new GridPane();
         bottomGridPane.setAlignment(Pos.CENTER);
 
-        TextField textField = new TextField();
-        textField.setMinSize(500, 100);
-        textField.setFocusTraversable(false);
-        bottomGridPane.add(textField, 0, 0);
+        motivationField = new TextField();
+        motivationField.setMinSize(500, 100);
+        motivationField.setFocusTraversable(false);
+        bottomGridPane.add(motivationField, 0, 0);
     }
 
-    public void createBottomBottomGridPane() {
+    public void createBottomBottomGridPane(EventHandler eventHandler) {
         bottomBottomGridPane = new GridPane();
         bottomBottomGridPane.setAlignment(Pos.CENTER);
 
         button = new Button("Submit");
         button.setFont(new Font("Dosis Bold", 20));
         button.setStyle(yellow);
-      //  button.setOnAction(eventHandler);
+        button.setOnAction(eventHandler);
 
         bottomBottomGridPane.add(button, 0, 0);
     }
 
     public Button getButton() {
         return button;
+    }
+
+    public RadioButton getMakeHabit() {
+        return makeHabit;
+    }
+
+    public RadioButton getBreakHabit() {
+        return breakHabit;
+    }
+
+    public TextField getNameField() {
+        return nameField;
+    }
+
+    public TextField getMotivationField() {
+        return motivationField;
     }
 }
 

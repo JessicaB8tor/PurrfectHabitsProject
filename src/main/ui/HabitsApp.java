@@ -164,7 +164,9 @@ public class HabitsApp implements EventHandler<ActionEvent> {
     }
 
     private void addPageListener(ActionEvent event) {
+        if (addHabitPage != null && event.getSource() == addHabitPage.getButton()) {
 
+        }
     }
 
     private void removePageListener(ActionEvent event) {
