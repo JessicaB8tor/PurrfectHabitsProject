@@ -33,6 +33,9 @@ public class HabitsApp implements EventHandler<ActionEvent> {
     private DashboardPage dashboardPage;
     private AboutUsPage aboutUsPage;
     private CreateAccountPage createAccountPage;
+    private AddHabitPage addHabitPage;
+    private RemoveHabitPage removeHabitPage;
+    private GalleryPage galleryPage;
     private Stage primaryStage;
 
     public HabitsApp(Stage primaryStage) {
@@ -81,6 +84,10 @@ public class HabitsApp implements EventHandler<ActionEvent> {
         aboutUsPageListener(event);
         createAccountPageListener(event);
         loginPageListener(event);
+        dashboardPageListener(event);
+        addPageListener(event);
+        removePageListener(event);
+        galleryPageListener(event);
     }
 
     private void welcomePageListener(ActionEvent event) {
@@ -146,7 +153,26 @@ public class HabitsApp implements EventHandler<ActionEvent> {
             } else {
                 AlertBox.display("PurrfectHabits", "Email or password is incorrect.");
             }
-
         }
+    }
+
+    private void dashboardPageListener(ActionEvent event) {
+        if (dashboardPage != null && event.getSource() == dashboardPage.getAddHabitButton()) {
+            addHabitPage = new AddHabitPage(this);
+        } else if (dashboardPage != null && event.getSource() == dashboardPage.getRemoveHabitButton()) {
+            removeHabitPage = new RemoveHabitPage(this);
+        }
+    }
+
+    private void addPageListener(ActionEvent event) {
+
+    }
+
+    private void removePageListener(ActionEvent event) {
+
+    }
+
+    private void galleryPageListener(ActionEvent event) {
+
     }
 }

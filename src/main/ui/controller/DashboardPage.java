@@ -6,15 +6,15 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.geometry.VerticalDirection;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.*;
@@ -30,7 +30,9 @@ import java.util.List;
 public class DashboardPage  {
     private static final String yellow = "-fx-background-color: #FFCB3D";
     private static final String blue = "-fx-background-color: #86D0F7";
-    private static final String grey = "-fx-background-color: #BEC2C4";
+    private static final String grey = "-fx-background-color: #E1E2E3";
+//    private static final String backgroundGrey = "-fx-background-color: #E9F3F9";
+    private static final String backgroundGrey = "-fx-background-color: #F5F9FC";
     private BorderPane borderPane;
     private BorderPane centerBorderPane;
     private VBox leftPane;
@@ -41,13 +43,15 @@ public class DashboardPage  {
     private Button friendsButton;
     private Button logoutButton;
     private Button leaderboardButton;
+    private Button addHabitButton;
+    private Button removeHabitButton;
 
     public DashboardPage(Stage primaryStage, EventHandler eventHandler, Dashboard dashboard) throws Exception {
         borderPane = new BorderPane();
-        borderPane.setPrefSize(1000, 500);
+        borderPane.setPrefSize(1664, 1000);
         createLeftPane();
         createTopPane();
-        createCenterPane(dashboard);
+        createCenterPane(dashboard, eventHandler);
         Scene scene = new Scene(borderPane);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -120,28 +124,31 @@ public class DashboardPage  {
         topPane.getChildren().add(separator);
 
         Label sayingLabel = new Label("\"" + quoteOfTheDay.getSaying() + "\"" + "\n" + "- " + quoteOfTheDay.getAuthor());
-        sayingLabel.setFont(new Font("Century Gothic", 20));
+        sayingLabel.setFont(new Font("Century Gothic", 25));
         sayingLabel.setWrapText(true);
-        sayingLabel.setMaxWidth(575);
+        sayingLabel.setMaxWidth(1200);
         topPane.getChildren().add(sayingLabel);
     }
 
-    public void createCenterPane(Dashboard dashboard) {
+    public void createCenterPane(Dashboard dashboard, EventHandler eventHandler) {
         centerBorderPane = new BorderPane();
+        centerBorderPane.setStyle(backgroundGrey);
 
-        createCenterTopPane();
+        createCenterTopPane(eventHandler);
         createCenterCenterPane(dashboard);
         createCenterBotPane(dashboard);
 
         borderPane.setCenter(centerBorderPane);
     }
 
-    public void createCenterTopPane() {
+    public void createCenterTopPane(EventHandler eventHandler) {
         HBox hBox = new HBox(10);
         hBox.setPadding(new Insets(10));
 
         Button add = new Button("Add");;
         Button remove = new Button("Remove");
+        add.setOnAction(eventHandler);
+        remove.setOnAction(eventHandler);
         List<Button> buttons = Arrays.asList(add, remove);
         for (Button b: buttons) {
             b.setStyle(grey);
@@ -156,8 +163,9 @@ public class DashboardPage  {
         GridPane gridPane = new GridPane();
 
         for (Habit habit : dashboard.getAllHabits()) {
+            System.out.println(habit.getTitle());
             List<Award> allAwards = habit.getAwardsGallery().getAllAwards();
-
+            System.out.println(allAwards.size());
             if (allAwards.size() == 0) {
                 try {
                     FileInputStream inputStream = new FileInputStream("data/misc/catLogo.png");
@@ -186,8 +194,55 @@ public class DashboardPage  {
     }
 
     public void createCenterBotPane(Dashboard dashboard) {
+        HBox hBox = new HBox(20);
+        hBox.setPadding(new Insets(10, 10, 10, 10));
+
+        NumberAxis xAxisLineGraph = new NumberAxis();
+        xAxisLineGraph.setLabel("Day #");
+        NumberAxis yAxisLineGraph = new NumberAxis();
+        yAxisLineGraph.setLabel("Total # of Awards");
+        LineChart lineChart = new LineChart(xAxisLineGraph, yAxisLineGraph);
+        XYChart.Series dataSeriesLineGraph = new XYChart.Series();
+        dataSeriesLineGraph.setName("Total # of Awards Over Time");
+        dataSeriesLineGraph.getData().add(new XYChart.Data(0, 0));
+        dataSeriesLineGraph.getData().add(new XYChart.Data(1, 1));
+        dataSeriesLineGraph.getData().add(new XYChart.Data(2, 4));
+        dataSeriesLineGraph.getData().add(new XYChart.Data(3, 10));
+        dataSeriesLineGraph.getData().add(new XYChart.Data(4, 5));
+        dataSeriesLineGraph.getData().add(new XYChart.Data(5, 20));
+        lineChart.getData().add(dataSeriesLineGraph);
+        hBox.getChildren().add(lineChart);
 
 
+        PieChart pieChart = new PieChart();
+        PieChart.Data slice1 = new PieChart.Data("# Total Relapses", 4);
+        PieChart.Data slice2 = new PieChart.Data("# Pawsome Achievements", 7);
+        pieChart.getData().add(slice1);
+        pieChart.getData().add(slice2);
+        hBox.getChildren().add(pieChart);
+
+        CategoryAxis xAxisBarGraph = new CategoryAxis();
+        xAxisBarGraph.setLabel("Habits");
+        NumberAxis yAxisBarGraph = new NumberAxis();
+        yAxisBarGraph.setLabel("# of Awards");
+        BarChart barChart = new BarChart(xAxisBarGraph, yAxisBarGraph);
+        XYChart.Series dataSeriesBarGraph = new XYChart.Series();
+        dataSeriesBarGraph.setName("# of Awards For Select Habits");
+        dataSeriesBarGraph.getData().add(new XYChart.Data("Exercise More", 20));
+        dataSeriesBarGraph.getData().add(new XYChart.Data("Read Everyday", 13));
+        dataSeriesBarGraph.getData().add(new XYChart.Data("Go To Bed On Time", 23));
+        barChart.getData().add(dataSeriesBarGraph);
+        hBox.getChildren().add(barChart);
+
+        centerBorderPane.setBottom(hBox);
+    }
+
+    public Button getAddHabitButton() {
+        return addHabitButton;
+    }
+
+    public Button getRemoveHabitButton() {
+        return removeHabitButton;
     }
 }
 

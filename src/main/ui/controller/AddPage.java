@@ -26,7 +26,7 @@ public class AddPage extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-        //public AddPage(Stage primaryStage, EventHandler eventHandler) {
+        //public AddPage(EventHandler eventHandler) {
         VBox vBox = new VBox(10);
         vBox.setPrefSize(1000, 500);
         vBox.setAlignment(Pos.CENTER);
@@ -49,14 +49,17 @@ public class AddPage extends Application {
         ToggleGroup toggleGroup = new ToggleGroup();
         makeHabit.setToggleGroup(toggleGroup);
         breakHabit.setToggleGroup(toggleGroup);
+        makeHabit.setOnAction(eventHandler);
 
         //TextField Stuff
         TextField name = new TextField();
+        name.setOnAction(eventHandler);
         name.setFocusTraversable(false);
         name.setPromptText("Name of Habit");
         name.s
 
         TextField reasoningField = new TextField();
+        reasoning.setOnAction(eventHandler);
         reasoningField.setFocusTraversable(false);
         reasoningField.setMinSize(200, 100);
 

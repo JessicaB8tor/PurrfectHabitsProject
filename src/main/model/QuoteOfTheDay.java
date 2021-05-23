@@ -65,7 +65,7 @@ public class QuoteOfTheDay {
         JSONArray jsonArray = new JSONArray(responseBody);
         JSONObject jsonObject = jsonArray.getJSONObject(0);
         String saying = jsonObject.getString("q");
-        saying = saying.substring(0, saying.length() - 1);
+//        saying = saying.substring(0, saying.length() - 1);
         String author = jsonObject.getString("a");
         Quote quote = new Quote(saying, author);
         return quote;
