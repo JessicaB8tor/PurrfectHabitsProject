@@ -18,43 +18,47 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
-public class AboutUsPage {
+public class AboutUsPage  {
     BorderPane borderPane;
     Button continueButton;
 
 //    @Override
 //    public void start(Stage primaryStage) throws Exception {
-//
-////    }
-//
-//
+
+
+
+
     public AboutUsPage(Stage primaryStage, EventHandler eventHandler) throws FileNotFoundException {
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
-        borderPane.setStyle("-fx-background-color: #FFCB3D");
+        borderPane.setStyle("-fx-background-color: #86D0F7");
 
         createLeftVBox();
         createCenterGridPane(eventHandler);
 
         Scene root = new Scene(borderPane);
 
+
         primaryStage.setScene(root);
         primaryStage.show();
+
     }
 
     public void  createLeftVBox() throws FileNotFoundException {
         VBox leftVBox = new VBox();
-        leftVBox.setAlignment(Pos.CENTER);
+        leftVBox.setAlignment(Pos.BOTTOM_CENTER);
         leftVBox.setStyle("-fx-background-color: #86D0F7");
+       /// leftVBox.setPadding(new Insets(100, 0, 0, 0));
 
         //Image Stuff
-        FileInputStream stream = new FileInputStream("data/misc/cat3.png");
+        FileInputStream stream = new FileInputStream("data/misc/twoCats.png");
         Image image = new Image(stream);
         ImageView logo = new ImageView(image);
-        logo.setFitWidth(400);
+        logo.setFitWidth(430);
         logo.setPreserveRatio(true);
 
-        VBox.setMargin(logo, new Insets(100, 0, 100, 0));
+       // VBox.setMargin(logo, new Insets(, 0, 0, 0));
+        //VBox.set
         leftVBox.getChildren().add(logo);
         borderPane.setLeft(logo);
     }
@@ -80,10 +84,10 @@ public class AboutUsPage {
         Label p6 = new Label("or an unhealthy one is broken");
         Label p7 = new Label("a new cat photo (or gif) is added");
         Label p8 = new Label("to your gallery");
-        Label p10 = new Label("But watch out!");
-        Label p11 = new Label("If you miss a day all you cats will be lost");
-        Label p12 = new Label("Will you take on the challenge?");
-        List<Label> labels = Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p12, p10, p11);
+        Label p9 = new Label("But watch out!");
+        Label p10 = new Label("If you miss a day all you cats will be lost");
+        Label p11 = new Label("Will you take on the challenge?");
+        List<Label> labels = Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11);
 
         for (Label l: labels) {
             l.setFont(new Font("Dosis Bold", 20));
@@ -100,7 +104,7 @@ public class AboutUsPage {
         continueButton.setOnAction(eventHandler);
 
 
-        centerVBox.getChildren().addAll(whatIs, p1, p2, p3, p4, p5, p6, p7, p8, p10, p11, p12, continueButton);
+        centerVBox.getChildren().addAll(whatIs, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, continueButton);
         borderPane.setCenter(centerVBox);
     }
 
