@@ -1,6 +1,7 @@
 package ui.controller;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -20,8 +21,13 @@ import java.util.List;
 
 public class CreateAccountPage {
     BorderPane borderPane;
+    TextField nameField;
+    TextField emailField;
+    TextField passwordField;
+    TextField confirmPasswordField;
+    Button createButton;
 
-    public CreateAccountPage(Stage primaryStage) throws FileNotFoundException {
+    public CreateAccountPage(Stage primaryStage, EventHandler eventHandler) throws FileNotFoundException {
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
         borderPane.setStyle("-fx-background-color: #FFCB3D");
@@ -82,19 +88,19 @@ public class CreateAccountPage {
         }
 
         //TextField Stuff
-        TextField nameField = new TextField();
+        nameField = new TextField();
         nameField.setPromptText("ex. Jessica");
         nameField.setFocusTraversable(false);
-        TextField emailField = new TextField();
+        emailField = new TextField();
         emailField.setPromptText("ex. meow@gmail.com");
         emailField.setFocusTraversable(false);
-        TextField passwordField = new TextField();
-        TextField confirmPasswordField = new TextField();
+        passwordField = new TextField();
+        confirmPasswordField = new TextField();
 
         //Button Stuff
-        Button button = new Button("Create");
-        button.setFont(new Font("Dosis Bold", 20));
-        button.setStyle("-fx-background-color: #FFCB3D");
+        createButton = new Button("Create");
+        createButton.setFont(new Font("Dosis Bold", 20));
+        createButton.setStyle("-fx-background-color: #FFCB3D");
 
         gridPane.add(name, 0, 0);
         gridPane.add(nameField, 1, 0);
@@ -104,9 +110,29 @@ public class CreateAccountPage {
         gridPane.add(passwordField, 1, 2);
         gridPane.add(confirmPassword, 0, 3);
         gridPane.add(confirmPasswordField, 1, 3);
-        gridPane.add(button, 0, 4, 2, 1);
+        gridPane.add(createButton, 0, 4, 2, 1);
 
         centerVBox.getChildren().addAll(createAcc, gridPane);
         borderPane.setCenter(centerVBox);
+    }
+
+    public TextField getNameField() {
+        return nameField;
+    }
+
+    public TextField getEmailField() {
+        return emailField;
+    }
+
+    public TextField getPasswordField() {
+        return passwordField;
+    }
+
+    public TextField getConfirmPasswordField() {
+        return confirmPasswordField;
+    }
+
+    public Button getCreateButton() {
+        return createButton;
     }
 }

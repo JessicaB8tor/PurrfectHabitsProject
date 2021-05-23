@@ -30,6 +30,7 @@ public class HabitsApp implements EventHandler<ActionEvent> {
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
     private AboutUsPage aboutUsPage;
+    private CreateAccountPage createAccountPage;
     private Stage primaryStage;
 
     public HabitsApp(Stage primaryStage) {
@@ -82,7 +83,13 @@ public class HabitsApp implements EventHandler<ActionEvent> {
     }
 
     private void aboutUsPageListener(ActionEvent event) {
-        if (aboutUsPage != null && event.getSource() == aboutUsPage.)
+        if (aboutUsPage != null && event.getSource() == aboutUsPage.getContinueButton()) {
+            try {
+                createAccountPage = new CreateAccountPage(primaryStage, this);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void loginPageListener(ActionEvent event) {
