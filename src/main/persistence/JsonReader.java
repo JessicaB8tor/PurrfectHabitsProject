@@ -39,6 +39,48 @@ public class JsonReader {
         return toReturn;
     }
 
+    public boolean readShouldRemember() {
+        boolean toReturn = false;
+
+        try {
+            String jsonData = readFile(source);
+            JSONObject jsonObject = new JSONObject(jsonData);
+            toReturn =  jsonObject.getBoolean("rememberMe");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return toReturn;
+    }
+
+    public String readEmail() {
+        String toReturn = "";
+
+        try {
+            String jsonData = readFile(source);
+            JSONObject jsonObject = new JSONObject(jsonData);
+            toReturn = jsonObject.getString("email");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return toReturn;
+    }
+
+    public String readPassword() {
+        String toReturn = "";
+
+        try {
+            String jsonData = readFile(source);
+            JSONObject jsonObject = new JSONObject(jsonData);
+            toReturn = jsonObject.getString("password");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return toReturn;
+    }
+
     // EFFECTS: reads journal from file and returns it;
     //          throws IOException if an error occurs when reading data from file
     public Dashboard read() throws IOException {

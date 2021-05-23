@@ -15,11 +15,15 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 
 public class LoginPage {
-//    Stage primaryStage;
     VBox loginVBox;
+    CheckBox rememberMe;
+    TextField email;
+    TextField password;
+    Button signInButton;
+
 
     public LoginPage(Stage primaryStage, EventHandler eventHandler) throws Exception {
-        loginVBox = new VBox(10);
+        loginVBox = new VBox(15);
         loginVBox.setAlignment(Pos.CENTER);
         loginVBox.setPrefSize(1000, 500);
         loginVBox.setStyle("-fx-background-color: #86D0F7");
@@ -32,25 +36,43 @@ public class LoginPage {
         logo.setPreserveRatio(true);
 
         //TextField stuff
-        TextField email = new TextField();
-        TextField password = new TextField();
+        email = new TextField();
+        password = new TextField();
         email.setPromptText("Email");
+        email.setFocusTraversable(false);
         password.setPromptText("Password");
+        password.setFocusTraversable(false);
         email.setMaxSize(200, 200);
         password.setMaxSize(200, 200);
 
         //Button Stuff
-        Button button = new Button("Submit");
-        button.setFont(new Font("Dosis Bold", 20));
-        button.setStyle("-fx-background-color: #FFCB3D");
+        signInButton = new Button("Sign In");
+        signInButton.setFont(new Font("Dosis Bold", 20));
+        signInButton.setStyle("-fx-background-color: #FFCB3D");
 
         //CheckBox Stuff
-        CheckBox checkBox = new CheckBox("Remember Me?");
+        rememberMe = new CheckBox("Remember Me?");
 
         Scene root = new Scene(loginVBox);
-        loginVBox.getChildren().addAll(logo, email, password, button, checkBox);
+        loginVBox.getChildren().addAll(logo, email, password, signInButton, rememberMe);
         primaryStage.setScene(root);
         primaryStage.show();
+    }
+
+    public CheckBox getRememberMe() {
+        return rememberMe;
+    }
+
+    public TextField getEmail() {
+        return email;
+    }
+
+    public TextField getPassword() {
+        return password;
+    }
+
+    public Button getSignInButton() {
+        return signInButton;
     }
 }
 

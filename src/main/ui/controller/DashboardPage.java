@@ -1,5 +1,6 @@
 package ui.controller;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -24,7 +25,7 @@ public class DashboardPage  {
     BorderPane borderPane;
     VBox leftVBox;
 
-    public DashboardPage(Stage primaryStage) throws Exception {
+    public DashboardPage(Stage primaryStage, EventHandler eventHandler) throws Exception {
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
         borderPane.setStyle("-fx-background-color: #FFCB3D");

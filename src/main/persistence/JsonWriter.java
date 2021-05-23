@@ -67,4 +67,52 @@ public class JsonWriter {
             e.printStackTrace();
         }
     }
+
+    private void writeRemember() {
+        JSONObject json = new JSONObject();
+        json.put("rememberMe", true);
+        saveToFile(json.toString(TAB));
+    }
+
+    public void setRememberMeTrue() {
+        try {
+            writer = new PrintWriter(new File(destination));
+            writeRemember();
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void writeEmail(String email) {
+        JSONObject json = new JSONObject();
+        json.put("email", email);
+        saveToFile(json.toString(TAB));
+    }
+
+    public void saveEmail(String email) {
+        try {
+            writer = new PrintWriter(new File(destination));
+            writeEmail(email);
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void writePassword(String password) {
+        JSONObject json = new JSONObject();
+        json.put("password", password);
+        saveToFile(json.toString(TAB));
+    }
+
+    public void savePassword(String password) {
+        try {
+            writer = new PrintWriter(new File(destination));
+            writeEmail(password);
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
