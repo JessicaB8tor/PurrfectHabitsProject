@@ -63,6 +63,7 @@ public class Dashboard {
     }
 
     // remove habit from proper habits list, then remove it from allHabits
+    // TODO: make this throw an exception
     public void removeHabit(Habit habit) {
         if (habit.getHabitType() == MAKEABLE) {
             habitsToMake.remove(habit);

@@ -3,10 +3,13 @@ package ui;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Dashboard;
+import model.Habit;
+import model.exceptions.HabitAlreadyExistsException;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.controller.*;
@@ -164,12 +167,33 @@ public class HabitsApp implements EventHandler<ActionEvent> {
     }
 
     private void addPageListener(ActionEvent event) {
-        if (addHabitPage != null && event.getSource() == addHabitPage.getButton()) {
+        if (addHabitPage != null && event.getSource() == addHabitPage.getSubmitButton()) {
+            RadioButton makeable = addHabitPage.getMakeHabit();
+            TextField nameField = addHabitPage.getNameField();
+            TextField motivationField = addHabitPage.getMotivationField();
 
+            String title = nameField.getText();
+            String purpose = motivationField.getText();
+            Habit.HabitType habitType = (makeable.isSelected()) ? Habit.HabitType.MAKEABLE : Habit.HabitType.BREAKABLE;
+
+            Habit habit = new Habit(title, purpose, habitType);
+            try {
+                dashboard.addHabit(habit);
+                addHabitPage.killPage();
+                AlertBox.display("PurrfectHabits", "Habit was successfully added.");
+            } catch (HabitAlreadyExistsException e) {
+                AlertBox.display("PurrfectHabits", "That habit already exists in your dashboard.");
+            }
         }
     }
 
     private void removePageListener(ActionEvent event) {
-
+        if (removeHabitPage != null && event.getSource() == removeHabitPage.getSubmitButton()) {
+            Habit toRemove = new Habit(removeHabitPage.getTextField().getText());
+            // TODO: fix removeHabit() bug
+            dashboard.removeHabit(toRemove);
+            removeHabitPage.killPage();
+            AlertBox.display("PurrfectHabits", "Habit was successfully removed.");
+        }
     }
 }

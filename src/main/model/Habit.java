@@ -38,6 +38,15 @@ public class Habit implements Writable {
         this.awardsGallery = awardsGallery;
     }
 
+    public Habit(String title) {
+        this.title = title;
+        purpose = null;
+        isCompleted = false;
+        habitStats = null;
+        habitType = null;
+        awardsGallery = null;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -115,6 +124,21 @@ public class Habit implements Writable {
         galleryObject.put("bestStreakAwards", bestStreakArray);
         mainObject.put("awardsGallery", galleryObject);
         return mainObject;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Habit habit = (Habit) o;
+
+        return title != null ? title.equals(habit.title) : habit.title == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return title != null ? title.hashCode() : 0;
     }
 }
 

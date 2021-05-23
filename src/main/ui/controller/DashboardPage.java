@@ -145,13 +145,11 @@ public class DashboardPage  {
         HBox hBox = new HBox(10);
         hBox.setPadding(new Insets(10));
 
-        Button add = new Button("Add");;
-        Button remove = new Button("Remove");
-        add.setOnAction(eventHandler);
-        remove.setOnAction(eventHandler);
-        List<Button> buttons = Arrays.asList(add, remove);
-//        AddPage addPage = new AddPage();
-//        add.setOnAction();
+        addHabitButton = new Button("Add");;
+        removeHabitButton = new Button("Remove");
+        addHabitButton.setOnAction(eventHandler);
+        removeHabitButton.setOnAction(eventHandler);
+        List<Button> buttons = Arrays.asList(addHabitButton, removeHabitButton);
         for (Button b: buttons) {
             b.setStyle(grey);
             b.setFont(new Font("Dosis", 20));

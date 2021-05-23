@@ -27,10 +27,10 @@ public class RemoveHabitPage {
     GridPane botGridPane;
     TextField textField;
     Button submitButton;
-
+    Stage stage;
 
     public RemoveHabitPage(EventHandler eventHandler) {
-        Stage stage = new Stage();
+        stage = new Stage();
         vBox = new VBox(10);
         vBox.setPrefSize(1000, 500);
         vBox.setAlignment(Pos.CENTER);
@@ -51,7 +51,7 @@ public class RemoveHabitPage {
     public void createTopStackPane() {
         topStackPane = new StackPane();
         Rectangle rectangle = new Rectangle(500, 100);
-        rectangle.setFill(Color.valueOf(yellow));
+        rectangle.setFill(Color.valueOf(yellowHex));
 
         Label label = new Label("Which habit do you want to delete?");
         label.setFont(new Font("Century Gothic Bold", 20));
@@ -80,8 +80,13 @@ public class RemoveHabitPage {
         submitButton.setFont(new Font("Dosis Bold", 20));
         submitButton.setStyle(yellow);
         submitButton.setMinSize(300, 50);
+        submitButton.setOnAction(eventHandler);
 
         botGridPane.add(submitButton, 0, 0);
+    }
+
+    public void killPage() {
+        stage.close();
     }
 
     public TextField getTextField() {

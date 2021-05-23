@@ -1,12 +1,10 @@
 package ui.controller;
 
-import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -14,10 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import model.Dashboard;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class AddHabitPage {
     private static final String yellow = "-fx-background-color: #FFCB3D";
@@ -30,14 +24,15 @@ public class AddHabitPage {
     GridPane bottomGridPane;
     GridPane middleGridPane;
     GridPane bottomBottomGridPane;
-    Button button;
+    Button submitButton;
     RadioButton makeHabit;
     RadioButton breakHabit;
     TextField nameField;
     TextField motivationField;
+    Stage addStage;
 
     public AddHabitPage(EventHandler eventHandler) {
-        Stage addStage = new Stage();
+        addStage = new Stage();
 
         vBox = new VBox(10);
         vBox.setPrefSize(1000, 500);
@@ -126,16 +121,16 @@ public class AddHabitPage {
         bottomBottomGridPane = new GridPane();
         bottomBottomGridPane.setAlignment(Pos.CENTER);
 
-        button = new Button("Submit");
-        button.setFont(new Font("Dosis Bold", 20));
-        button.setStyle(yellow);
-        button.setOnAction(eventHandler);
+        submitButton = new Button("Submit");
+        submitButton.setFont(new Font("Dosis Bold", 20));
+        submitButton.setStyle(yellow);
+        submitButton.setOnAction(eventHandler);
 
-        bottomBottomGridPane.add(button, 0, 0);
+        bottomBottomGridPane.add(submitButton, 0, 0);
     }
 
-    public Button getButton() {
-        return button;
+    public Button getSubmitButton() {
+        return submitButton;
     }
 
     public RadioButton getMakeHabit() {
@@ -152,6 +147,10 @@ public class AddHabitPage {
 
     public TextField getMotivationField() {
         return motivationField;
+    }
+
+    public void killPage() {
+        addStage.close();
     }
 }
 
