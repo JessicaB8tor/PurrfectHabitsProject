@@ -150,6 +150,8 @@ public class DashboardPage  {
         add.setOnAction(eventHandler);
         remove.setOnAction(eventHandler);
         List<Button> buttons = Arrays.asList(add, remove);
+//        AddPage addPage = new AddPage();
+//        add.setOnAction();
         for (Button b: buttons) {
             b.setStyle(grey);
             b.setFont(new Font("Dosis", 20));
