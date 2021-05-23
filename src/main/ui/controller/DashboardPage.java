@@ -2,18 +2,23 @@ package ui.controller;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.geometry.VerticalDirection;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import model.Quote;
+import model.QuoteOfTheDay;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -28,7 +33,7 @@ public class DashboardPage  {
     private BorderPane borderPane;
     private VBox leftPane;
     private HBox topPane;
-    private String quoteOfTheDay;
+    private Quote quoteOfTheDay;
     private Button settingsButton;
     private Button profileButton;
     private Button friendsButton;
@@ -70,10 +75,15 @@ public class DashboardPage  {
             }
 
             settingsButton = new Button("", settingsImage);
+            settingsButton.setFocusTraversable(false);
             profileButton = new Button("", profileImage);
+            profileButton.setFocusTraversable(false);
             logoutButton = new Button("", logoutImage);
+            logoutButton.setFocusTraversable(false);
             friendsButton = new Button("", friendsImage);
+            friendsButton.setFocusTraversable(false);
             leaderboardButton = new Button("", leaderboardImage);
+            leaderboardButton.setFocusTraversable(false);
 
             leftPane.getChildren().addAll(profileButton, friendsButton, leaderboardButton, settingsButton, logoutButton);
         } catch (FileNotFoundException e) {
@@ -82,7 +92,36 @@ public class DashboardPage  {
     }
 
     public void createTopPane() {
+        topPane = new HBox(10);
+        topPane.setStyle(blue);
+        topPane.setPadding(new Insets(10, 10, 10, 10));
+        borderPane.setTop(topPane);
 
+        try {
+            FileInputStream inputStream = new FileInputStream("data/misc/anonCat.png");
+            ImageView imageView = new ImageView(new Image(inputStream));
+            imageView.setFitWidth(70);
+            imageView.setFitHeight(70);
+            topPane.getChildren().add(imageView);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        QuoteOfTheDay generator = new QuoteOfTheDay();
+        quoteOfTheDay = generator.getQuoteOfTheDay();
+
+        Label dashboardLabel = new Label("Dashboard");
+        dashboardLabel.setFont(new Font("Century Gothic Bold", 55));
+        topPane.getChildren().add(dashboardLabel);
+
+        Separator separator = new Separator(Orientation.VERTICAL);
+        topPane.getChildren().add(separator);
+
+        Label sayingLabel = new Label("\"" + quoteOfTheDay.getSaying() + "\"" + "\n" + "- " + quoteOfTheDay.getAuthor());
+        sayingLabel.setFont(new Font("Century Gothic", 20));
+        sayingLabel.setWrapText(true);
+        sayingLabel.setMaxWidth(570);
+        topPane.getChildren().add(sayingLabel);
     }
 
     public void createBigPane() {
