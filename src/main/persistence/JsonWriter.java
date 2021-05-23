@@ -84,32 +84,18 @@ public class JsonWriter {
         }
     }
 
-    private void writeEmail(String email) {
+    private void writeAccountDetails(String name, String email, String password) {
         JSONObject json = new JSONObject();
+        json.put("name", name);
         json.put("email", email);
-        saveToFile(json.toString(TAB));
-    }
-
-    public void saveEmail(String email) {
-        try {
-            writer = new PrintWriter(new File(destination));
-            writeEmail(email);
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void writePassword(String password) {
-        JSONObject json = new JSONObject();
         json.put("password", password);
         saveToFile(json.toString(TAB));
     }
 
-    public void savePassword(String password) {
+    public void saveAccountDetails(String name, String email, String password) {
         try {
             writer = new PrintWriter(new File(destination));
-            writeEmail(password);
+            writeAccountDetails(name, email, password);
             writer.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

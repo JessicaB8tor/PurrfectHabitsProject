@@ -69,6 +69,7 @@ public class HabitsApp implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
         welcomePageListener(event);
         aboutUsPageListener(event);
+        createAccountPageListener(event);
         loginPageListener(event);
     }
 
@@ -88,6 +89,28 @@ public class HabitsApp implements EventHandler<ActionEvent> {
                 createAccountPage = new CreateAccountPage(primaryStage, this);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    private void createAccountPageListener(ActionEvent event) {
+        if (createAccountPage != null && event.getSource() == createAccountPage.getCreateButton()) {
+            TextField name = createAccountPage.getNameField();
+            TextField email = createAccountPage.getEmailField();
+            TextField password = createAccountPage.getPasswordField();
+            TextField confirmPassword = createAccountPage.getConfirmPasswordField();
+
+            if (!password.getText().equals(confirmPassword.getText())) {
+                AlertBox.display("PurrfectHabits", "Passwords do not match.");
+            } else {
+                accountWriter = new JsonWriter(accountDirectory);
+                accountWriter.saveAccountDetails(name.getText(), email.getText(), password.getText());
+                AlertBox.display("PurrfectHabits", "Account was successfully created. Please log in.");
+                try {
+                    loginPage = new LoginPage(primaryStage, this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

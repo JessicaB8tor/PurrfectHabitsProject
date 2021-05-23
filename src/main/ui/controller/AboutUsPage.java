@@ -34,7 +34,7 @@ public class AboutUsPage {
         borderPane.setStyle("-fx-background-color: #FFCB3D");
 
         createLeftVBox();
-        createCenterGridPane();
+        createCenterGridPane(eventHandler);
 
         Scene root = new Scene(borderPane);
 
@@ -59,7 +59,7 @@ public class AboutUsPage {
         borderPane.setLeft(logo);
     }
 
-    public void createCenterGridPane() {
+    public void createCenterGridPane(EventHandler eventHandler) {
         VBox centerVBox = new VBox();
         centerVBox.setAlignment(Pos.CENTER);
         centerVBox.setStyle("-fx-background-color: #FFCB3D");
@@ -97,6 +97,7 @@ public class AboutUsPage {
         continueButton = new Button("Continue");
         continueButton.setFont(new Font("Dosis Bold", 20));
         continueButton.setStyle("-fx-background-color: #86D0F7");
+        continueButton.setOnAction(eventHandler);
 
 
         centerVBox.getChildren().addAll(whatIs, p1, p2, p3, p4, p5, p6, p7, p8, p10, p11, p12, continueButton);

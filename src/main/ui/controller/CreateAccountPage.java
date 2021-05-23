@@ -33,7 +33,7 @@ public class CreateAccountPage {
         borderPane.setStyle("-fx-background-color: #FFCB3D");
 
         createLeftVBox();
-        createCenterGridPane();
+        createCenterGridPane(eventHandler);
 
         Scene root = new Scene(borderPane);
 
@@ -58,7 +58,7 @@ public class CreateAccountPage {
         borderPane.setLeft(logo);
     }
 
-    public void createCenterGridPane() {
+    public void createCenterGridPane(EventHandler eventHandler) {
         //TODO: Make method smaller for checkstyle & readability
         VBox centerVBox = new VBox();
         centerVBox.setAlignment(Pos.CENTER);
@@ -101,6 +101,7 @@ public class CreateAccountPage {
         createButton = new Button("Create");
         createButton.setFont(new Font("Dosis Bold", 20));
         createButton.setStyle("-fx-background-color: #FFCB3D");
+        createButton.setOnAction(eventHandler);
 
         gridPane.add(name, 0, 0);
         gridPane.add(nameField, 1, 0);
