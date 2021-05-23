@@ -87,8 +87,10 @@ public class AboutUsPage extends Application {
         //TextField Stuff
         TextField nameField = new TextField();
         nameField.setPromptText("ex. Jessica");
+        nameField.setFocusTraversable(false);
         TextField emailField = new TextField();
         emailField.setPromptText("ex. meow@gmail.com");
+        emailField.setFocusTraversable(false);
         TextField passwordField = new TextField();
         TextField confirmPasswordField = new TextField();
 

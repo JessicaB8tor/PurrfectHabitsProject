@@ -18,23 +18,16 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
-public class CreateAccountPage extends Application {
+public class CreateAccountPage {
     BorderPane borderPane;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
-
-
-   // public CreateAccountPage(Stage primaryStage) {
+    public CreateAccountPage(Stage primaryStage) throws FileNotFoundException {
         borderPane = new BorderPane();
         borderPane.setPrefSize(1000, 500);
         borderPane.setStyle("-fx-background-color: #FFCB3D");
 
         createLeftVBox();
-       // createTopHBox();
         createCenterGridPane();
-       // createBottomVBox();
 
         Scene root = new Scene(borderPane);
 
@@ -64,18 +57,18 @@ public class CreateAccountPage extends Application {
         VBox centerVBox = new VBox();
         centerVBox.setAlignment(Pos.CENTER);
         centerVBox.setStyle("-fx-background-color: #86D0F7");
-        centerVBox.setSpacing(100);
+        centerVBox.setSpacing(50);
+        centerVBox.setPadding(new Insets(0, 0, 50, 0));
 
         GridPane gridPane = new GridPane();
-        //gridPane.setStyle("-fx-background-color: #86D0F7");
 
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setVgap(15);
         gridPane.setHgap(20);
 
-        //Name Label
+        //Name Label Stuff
         Label createAcc = new Label("Create Your Account");
-        createAcc.setFont(new Font("Century Gothic Bold", 30));
+        createAcc.setFont(new Font("Century Gothic Bold", 50));
 
 
         //Label Stuff
@@ -91,8 +84,10 @@ public class CreateAccountPage extends Application {
         //TextField Stuff
         TextField nameField = new TextField();
         nameField.setPromptText("ex. Jessica");
+        nameField.setFocusTraversable(false);
         TextField emailField = new TextField();
         emailField.setPromptText("ex. meow@gmail.com");
+        emailField.setFocusTraversable(false);
         TextField passwordField = new TextField();
         TextField confirmPasswordField = new TextField();
 
