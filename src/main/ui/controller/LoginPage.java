@@ -1,5 +1,6 @@
 package ui.controller;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,12 +15,10 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 
 public class LoginPage {
-    Stage primaryStage;
+//    Stage primaryStage;
     VBox loginVBox;
 
-    public LoginPage() throws Exception {
-        primaryStage = new Stage();
-
+    public LoginPage(Stage primaryStage, EventHandler eventHandler) throws Exception {
         loginVBox = new VBox(10);
         loginVBox.setAlignment(Pos.CENTER);
         loginVBox.setPrefSize(1000, 500);

@@ -25,6 +25,20 @@ public class JsonReader {
         this.source = source;
     }
 
+    public boolean readIsInitial() {
+        boolean toReturn = false;
+
+        try {
+            String jsonData = readFile(source);
+            JSONObject jsonObject = new JSONObject(jsonData);
+            toReturn =  jsonObject.getBoolean("isInitialLaunch");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return toReturn;
+    }
+
     // EFFECTS: reads journal from file and returns it;
     //          throws IOException if an error occurs when reading data from file
     public Dashboard read() throws IOException {

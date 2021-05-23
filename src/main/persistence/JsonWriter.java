@@ -25,7 +25,7 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of dashboard to file
-    public void write(Habit habit) {
+    private void write(Habit habit) {
         JSONObject json = habit.toJson();
         saveToFile(json.toString(TAB));
     }
@@ -49,6 +49,22 @@ public class JsonWriter {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void writeLaunch() {
+        JSONObject json = new JSONObject();
+        json.put("isInitialLaunch", false);
+        saveToFile(json.toString(TAB));
+    }
+
+    public void setIsInitialLaunchFalse() {
+        try {
+            writer = new PrintWriter(new File(destination));
+            writeLaunch();
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

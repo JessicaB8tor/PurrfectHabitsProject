@@ -1,5 +1,6 @@
 package ui.controller;
 
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,8 +18,9 @@ import java.io.FileNotFoundException;
 
 public class WelcomePage {
     GridPane gridPane;
+    Button getStartedButton;
 
-    public WelcomePage(Stage primaryStage) throws FileNotFoundException {
+    public WelcomePage(Stage primaryStage, EventHandler eventHandler) throws FileNotFoundException {
         gridPane = new GridPane();
         gridPane.setPrefSize(1000, 500);
         gridPane.setAlignment(Pos.CENTER);
@@ -38,23 +40,28 @@ public class WelcomePage {
         purrfectHabits.setFont(new Font("Showcard Gothic", 50));
 
         //Button Stuff
-        Button button = new Button("Get Started");
-        button.setFont(new Font("Dosis Bold", 20));
-        button.setStyle("-fx-background-color: #FFCB3D");
+        getStartedButton = new Button("Get Started");
+        getStartedButton.setFont(new Font("Dosis Bold", 20));
+        getStartedButton.setStyle("-fx-background-color: #FFCB3D");
+        getStartedButton.setOnAction(eventHandler);
 
         gridPane.add(logo, 0, 0, 1, 3);
         gridPane.add(welcomeTo, 1, 0);
         gridPane.add(purrfectHabits, 1, 1);
-        gridPane.add(button, 1, 2);
+        gridPane.add(getStartedButton, 1, 2);
 
         GridPane.setHalignment(welcomeTo, HPos.CENTER);
         GridPane.setHalignment(purrfectHabits, HPos.CENTER);
-        GridPane.setHalignment(button, HPos.CENTER);
+        GridPane.setHalignment(getStartedButton, HPos.CENTER);
 
 
         Scene root = new Scene(gridPane);
         primaryStage.setScene(root);
         primaryStage.show();
+    }
+
+    public Button getGetStartedButton() {
+        return getStartedButton;
     }
 }
 
