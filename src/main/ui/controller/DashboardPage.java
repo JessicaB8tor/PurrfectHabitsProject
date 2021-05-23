@@ -161,17 +161,29 @@ public class DashboardPage  {
 
     public void createCenterCenterPane(Dashboard dashboard) {
         GridPane gridPane = new GridPane();
+        gridPane.setVgap(10);
+        gridPane.setHgap(20);
+        gridPane.setPadding(new Insets(10, 20, 10, 20));
 
+        int rowCount = 0;
+        int colCount = 0;
         for (Habit habit : dashboard.getAllHabits()) {
-            System.out.println(habit.getTitle());
             List<Award> allAwards = habit.getAwardsGallery().getAllAwards();
-            System.out.println(allAwards.size());
             if (allAwards.size() == 0) {
                 try {
                     FileInputStream inputStream = new FileInputStream("data/misc/catLogo.png");
                     ImageView imageView = new ImageView(new Image(inputStream));
+                    imageView.setFitHeight(180);
+                    imageView.setFitWidth(200);
                     Button button = new Button(habit.getTitle(), imageView);
-                    gridPane.getChildren().add(button);
+                    gridPane.add(button, colCount, rowCount);
+
+                    if (colCount == 4) {
+                        colCount = 0;
+                        rowCount++;
+                    } else {
+                        colCount++;
+                    }
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -182,8 +194,17 @@ public class DashboardPage  {
                 try {
                     FileInputStream inputStream = new FileInputStream("data/habits/" + habit.getTitle() + "/" + habit.getTitle() + "_Gallery/" + lastAwardReceivedDate + extension);
                     ImageView imageView = new ImageView(new Image(inputStream));
+                    imageView.setFitHeight(180);
+                    imageView.setFitWidth(200);
                     Button button = new Button(habit.getTitle(), imageView);
-                    gridPane.add(button, 0, 0);
+                    gridPane.add(button, colCount, rowCount);
+
+                    if (colCount == 4) {
+                        colCount = 0;
+                        rowCount++;
+                    } else {
+                        colCount++;
+                    }
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

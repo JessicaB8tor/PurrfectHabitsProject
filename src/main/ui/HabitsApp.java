@@ -16,6 +16,7 @@ import ui.controller.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class HabitsApp implements EventHandler<ActionEvent> {
     private static final String habitsFolderDirectory = "./data/habits";
@@ -51,8 +52,12 @@ public class HabitsApp implements EventHandler<ActionEvent> {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        dashboard = new Dashboard();
         jsonReader = new JsonReader(habitsFolderDirectory);
+        try {
+            dashboard = jsonReader.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         jsonWriter = new JsonWriter(habitsFolderDirectory);
         isInitialReader = new JsonReader(isInitialDirectory);
         rememberMeReader = new JsonReader(signInDirectory);
@@ -179,10 +184,14 @@ public class HabitsApp implements EventHandler<ActionEvent> {
             Habit habit = new Habit(title, purpose, habitType);
             try {
                 dashboard.addHabit(habit);
+                jsonWriter.saveDashboard(dashboard);
+                dashboardPage = new DashboardPage(primaryStage, this, dashboard);
                 addHabitPage.killPage();
                 AlertBox.display("PurrfectHabits", "Habit was successfully added.");
             } catch (HabitAlreadyExistsException e) {
                 AlertBox.display("PurrfectHabits", "That habit already exists in your dashboard.");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

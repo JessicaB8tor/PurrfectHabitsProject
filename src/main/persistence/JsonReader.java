@@ -122,7 +122,7 @@ public class JsonReader {
         int longestStreak = jsonObject.getJSONObject("habitStats").getInt("longestStreak");
         LocalDate date = LocalDate.parse(jsonObject.getJSONObject("habitStats").getString("dateCreated"));
         int numDaysSinceStarted = jsonObject.getJSONObject("habitStats").getInt("numDaysSinceStarted");
-        int numSetBacks = jsonObject.getJSONObject("habitStats").getInt("numSetBacks");
+        int numSetBacks = jsonObject.getJSONObject("habitStats").getInt("numSetbacks");
         Stats stats = new Stats(currentStreak, longestStreak, date, numDaysSinceStarted, numSetBacks);
 
         Habit.HabitType habitType = Habit.HabitType.valueOf(jsonObject.getString("habitType"));
