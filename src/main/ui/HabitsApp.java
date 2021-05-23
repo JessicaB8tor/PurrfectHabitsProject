@@ -4,12 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Dashboard;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.controller.*;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class HabitsApp implements EventHandler<ActionEvent> {
@@ -35,6 +37,14 @@ public class HabitsApp implements EventHandler<ActionEvent> {
 
     public HabitsApp(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        try {
+            FileInputStream inputStream = new FileInputStream("data/misc/anonCat.png");
+            Image icon = new Image(inputStream);
+            primaryStage.getIcons().add(icon);
+            primaryStage.setTitle("PurrfectHabits");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         dashboard = new Dashboard();
         jsonReader = new JsonReader(habitsFolderDirectory);
         jsonWriter = new JsonWriter(habitsFolderDirectory);
