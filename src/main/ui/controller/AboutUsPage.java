@@ -71,6 +71,7 @@ public class AboutUsPage extends Application {
 
         //Name Label Stuff
         Label createAcc = new Label("Create Your Account");
+        createAcc.setFont(new Font("Century Gothic Bold", 50));
 
 
         //Label Stuff
@@ -106,9 +107,8 @@ public class AboutUsPage extends Application {
         gridPane.add(confirmPasswordField, 1, 3);
         gridPane.add(button, 0, 4, 2, 1);
 
-        centerVBox.getChildren().addAll(gridPane);
-
-        borderPane.setCenter(gridPane);
+        centerVBox.getChildren().addAll(createAcc, gridPane);
+        borderPane.setCenter(centerVBox);
     }
 }
 

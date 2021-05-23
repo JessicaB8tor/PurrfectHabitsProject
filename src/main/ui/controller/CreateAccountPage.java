@@ -61,12 +61,22 @@ public class CreateAccountPage extends Application {
 
     public void createCenterGridPane() {
         //TODO: Make method smaller for checkstyle & readability
+        VBox centerVBox = new VBox();
+        centerVBox.setAlignment(Pos.CENTER);
+        centerVBox.setStyle("-fx-background-color: #86D0F7");
+        centerVBox.setSpacing(100);
+
         GridPane gridPane = new GridPane();
-        gridPane.setStyle("-fx-background-color: #86D0F7");
+        //gridPane.setStyle("-fx-background-color: #86D0F7");
 
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setVgap(15);
         gridPane.setHgap(20);
+
+        //Name Label
+        Label createAcc = new Label("Create Your Account");
+        createAcc.setFont(new Font("Century Gothic Bold", 30));
+
 
         //Label Stuff
         Label name = new Label("Name");
@@ -101,6 +111,7 @@ public class CreateAccountPage extends Application {
         gridPane.add(confirmPasswordField, 1, 3);
         gridPane.add(button, 0, 4, 2, 1);
 
-        borderPane.setCenter(gridPane);
+        centerVBox.getChildren().addAll(createAcc, gridPane);
+        borderPane.setCenter(centerVBox);
     }
 }
