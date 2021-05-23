@@ -30,7 +30,9 @@ import java.util.List;
 public class DashboardPage  {
     private static final String yellow = "-fx-background-color: #FFCB3D";
     private static final String blue = "-fx-background-color: #86D0F7";
+    private static final String grey = "-fx-background-color: #BEC2C4";
     private BorderPane borderPane;
+    private BorderPane centerBorderPane;
     private VBox leftPane;
     private HBox topPane;
     private Quote quoteOfTheDay;
@@ -45,7 +47,7 @@ public class DashboardPage  {
         borderPane.setPrefSize(1000, 500);
         createLeftPane();
         createTopPane();
-        createBigPane();
+        createCenterPane();
         Scene scene = new Scene(borderPane);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -120,11 +122,43 @@ public class DashboardPage  {
         Label sayingLabel = new Label("\"" + quoteOfTheDay.getSaying() + "\"" + "\n" + "- " + quoteOfTheDay.getAuthor());
         sayingLabel.setFont(new Font("Century Gothic", 20));
         sayingLabel.setWrapText(true);
-        sayingLabel.setMaxWidth(570);
+        sayingLabel.setMaxWidth(575);
         topPane.getChildren().add(sayingLabel);
     }
 
-    public void createBigPane() {
+    public void createCenterPane() {
+        centerBorderPane = new BorderPane();
+
+        createCenterTopPane();
+        createCenterCenterPane();
+        createCenterBotPane();
+
+        borderPane.setCenter(centerBorderPane);
+    }
+
+    public void createCenterTopPane() {
+        HBox hBox = new HBox(10);
+        hBox.setPadding(new Insets(10));
+
+        Button add = new Button("Add");
+        Button remove = new Button("Remove");
+        List<Button> buttons = Arrays.asList(add, remove);
+        for (Button b: buttons) {
+            b.setStyle(grey);
+            b.setFont(new Font("Dosis", 20));
+            b.setPrefSize(100, 20);
+        }
+        hBox.getChildren().addAll(buttons);
+        centerBorderPane.setTop(hBox);
+    }
+
+    public void createCenterCenterPane() {
+        GridPane gridPane = new GridPane();
+
+
+    }
+
+    public void createCenterBotPane() {
 
     }
 }
